@@ -11,7 +11,7 @@ void Manager::read_files(){
     ReadRoutes();
 }
 Graph Manager::getGraph(){
-    return graph;
+    return graph_algorithms;
 }
 void Manager::ReadStations() {
 
@@ -31,7 +31,7 @@ void Manager::ReadStations() {
         getline(ss, municipality, ',');
         getline(ss, township, ',');
         getline(ss, line, ',');
-        graph.addVertex(name,district,municipality,township,line);//future add hasmap
+        graph_algorithms.addVertex(name,district,municipality,township,line);//future add hasmap
     }
 }
 
@@ -52,6 +52,10 @@ void Manager::ReadRoutes(){
         getline(ss, station_B, ',');
         getline(ss,capacity, ',');
         getline(ss, service, ',');
-        graph.addBidirectionalEdge(station_A,station_B, stoi(capacity),service);
+        graph_algorithms.addBidirectionalEdge(station_A,station_B, stoi(capacity),service);
     }
 }
+void Manager::Karp(string source, string target){
+    cout << graph_algorithms.edmondsKarp(source,target);
+}
+
