@@ -2,7 +2,7 @@
 // Created by tomas on 15/03/2023.
 //
 
-#include "VertexEdge.h"
+#include "../headers/VertexEdge.h"
 
 /************************* Vertex  **************************/
 

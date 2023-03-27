@@ -2,7 +2,7 @@
 // Created by tomas on 17/03/2023.
 //
 
-#include "GraphAlgorithms.h"
+#include "../headers/GraphAlgorithms.h"
 int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
     double f  = INT_MAX;
     for ( Vertex* v = t ; v!=s ;){
