@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Graph.h"
-#include "Manager.h"
-#include "GraphAlgorithms.h"
+#include "../headers/Graph.h"
+#include "../headers/Manager.h"
+#include "../headers/GraphAlgorithms.h"
 int main() {
     Manager manager = Manager();
     manager.read_files();

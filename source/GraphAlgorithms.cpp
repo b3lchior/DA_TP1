@@ -2,16 +2,14 @@
 // Created by tomas on 17/03/2023.
 //
 
-#include "GraphAlgorithms.h"
+#include "../headers/GraphAlgorithms.h"
 #include <iostream>
 #include <limits>
 #include <queue>
 #include <vector>
 #include <algorithm>
 #include <cmath>
-#include "Graph.h"
 using namespace std;
-
 int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
     double f  = INT_MAX;
     for ( Vertex* v = t ; v!=s ;){
@@ -99,26 +97,24 @@ bool GraphAlgorithms::findArgumentingPath(Vertex* s,Vertex* t){
 
 
 
+
+
 vector<MaxTrainPair> GraphAlgorithms::find_max_flow(){
     vector<MaxTrainPair> res;
     MaxTrainPair maxi;
     maxi.numTrains = 0;
     res.push_back(maxi);
     //pode se oiptimizar
-    for(auto vertex : vertexSet){
-        for(auto vertex1:vertexSet){
-            if(vertex->getId() == vertex1->getId()){
-                continue;
-            }
+    for(int j = 0 ; j <vertexSet.size();j++){
+        for(int i =j+1; i <vertexSet.size();i++){
             MaxTrainPair tmp;
-            tmp.numTrains = edmondsKarp(vertex->getId(),vertex1->getId());;
-            tmp.station1 = vertex->getId();
-            tmp.station2 = vertex1->getId();
+            tmp.station1 = vertexSet[i]->getId();
+            tmp.station2 = vertexSet[j]->getId();
+            tmp.numTrains = edmondsKarp(tmp.station1,tmp.station2);
             if (res[0].numTrains < tmp.numTrains){
                 res.clear();
                 res.push_back(tmp);
-            }
-            if(res[0].numTrains == tmp.numTrains){
+            }else if(res[0].numTrains == tmp.numTrains){
                 res.push_back(tmp);
             }
 
@@ -126,7 +122,6 @@ vector<MaxTrainPair> GraphAlgorithms::find_max_flow(){
     }
     return res;
 }
-
 
 
 
