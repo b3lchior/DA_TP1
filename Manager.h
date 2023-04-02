@@ -15,6 +15,7 @@ public:
     void ReadRoutes();
     Graph getGraph();
     void Karp(string source, string target);
+    void MaxFlowFromNetwork();
 };
 
 

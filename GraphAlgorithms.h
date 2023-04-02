@@ -6,9 +6,18 @@
 #define DA_TP1_GRAPHALGORITHMS_H
 #include "Graph.h"
 
+
+struct MaxTrainPair {
+    string station1;
+    string station2;
+    int numTrains;
+};
+
+
 class GraphAlgorithms: public Graph {
 public:
     int edmondsKarp(string source, string target);
+    vector<MaxTrainPair> find_max_flow();
 protected:
     bool findArgumentingPath(Vertex* s,Vertex* t);
     int finMinResidualaLongPath(Vertex* s,Vertex* t);

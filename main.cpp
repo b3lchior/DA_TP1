@@ -16,6 +16,7 @@ int main() {
         }
         cout<<"---------------------------------\n";
     }*/
-    manager.Karp("Lisboa Rossio","Porto Campanhã");
+    //manager.Karp("Lisboa Rossio","Porto Campanhã");
+    manager.MaxFlowFromNetwork();
     return 0;
 }

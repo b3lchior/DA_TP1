@@ -59,3 +59,9 @@ void Manager::Karp(string source, string target){
     cout << graph_algorithms.edmondsKarp(source,target);
 }
 
+void Manager::MaxFlowFromNetwork(){
+    vector<MaxTrainPair> res = graph_algorithms.find_max_flow();
+    for(auto result : res){
+        cout<<"\n"<<result.station1<<"------"<<result.numTrains<<"-------------->"<<result.station2<<"\n";
+    }
+}
