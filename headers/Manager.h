@@ -20,6 +20,7 @@ public:
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
     vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
     int karpWithDijska(string s,string t);
+    int KarpWithReducedConectivity(string s,string t , vector<Edge> unusableEdges);
 };
 
 

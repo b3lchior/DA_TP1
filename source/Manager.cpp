@@ -82,7 +82,15 @@ vector<string> Manager::TopKMunicipesForWithMoreTraficPotencial(int k){
 
 int Manager::karpWithDijska(string s,string t){
     int price = INT16_MAX;
-    return graph_algorithms.edmondsKarpWithDijska(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),price);
+    int tmp = graph_algorithms.edmondsKarpWithDijska(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),price);
+    cout<<"Number of trains :"<<tmp<<"Price :"<<tmp*price;
+    return 1;
 }
 
-
+int Manager::KarpWithReducedConectivity(string s,string t , vector<Edge> unusableEdges){
+    vector<Edge*> edges;
+    for(Edge e : unusableEdges){
+        edges.push_back(graph_algorithms.findEdge(e));
+    }
+    return graph_algorithms.edmondsKarpReducedConnectivity(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),edges);
+}

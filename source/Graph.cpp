@@ -79,6 +79,22 @@ bool Graph::addEdge(const string &sourc, const string &dest, double w, string se
     return true;
 }
 
+Edge* Graph::findEdge(Vertex * dest,Vertex *orig,double weight,string service){
+    for(Edge* e : orig->getAdj()){
+        if(e->getDest() == dest && e->getService() == service){
+            return e;
+        }
+    }
+}
+
+Edge* Graph::findEdge(Edge e){
+    for(Edge* e : e.getOrig()->getAdj()){
+        if(e->getDest() == e->getDest() && e->getService() == e->getService()){
+            return e;
+        }
+    }
+}
+
 bool Graph::addBidirectionalEdge(const string &sourc, const string &dest, double w , string service) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);

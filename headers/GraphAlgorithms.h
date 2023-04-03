@@ -36,6 +36,7 @@ public:
     vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
     int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
+    int edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<Edge*> edgesReduced);
 protected:
     bool findArgumentingPathWithDijka(Vertex* s,Vertex* t,int &mim);
     void testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual, int dist_init);
@@ -48,6 +49,12 @@ protected:
     int finMinResidualaLongPath(Vertex* s,Vertex* t);
     void argumentFlowAlongPath(Vertex* s,Vertex* t,int f);
     void testAndVisit(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);
+
+    int finMinResidualaLongPathReducedConnectivity(Vertex* s,Vertex* t);
+    void argumentFlowAlongPathReducedConnectivity(Vertex* s,Vertex* t,int f);
+    void testAndVisitReducedConnectivity(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);
+    bool findArgumentingPathReducedConnectivity(Vertex* s,Vertex* t);
+
 };
 
 
