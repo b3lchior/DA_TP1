@@ -35,7 +35,10 @@ public:
     int find_max_number_of_trains_to_station(string stationID);
     vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
+    int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
 protected:
+    bool findArgumentingPathWithDijka(Vertex* s,Vertex* t,int &mim);
+    void testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual, int dist_init);
     vector<Vertex*> find_vertexes_with_only_one_edge();
     bool findArgumentingPath(Vertex* s,Vertex* t);
     vector<string> getMunicipes();

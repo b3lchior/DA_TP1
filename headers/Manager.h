@@ -19,6 +19,7 @@ public:
     int find_max_number_of_trains_to_station(string stationID);
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
     vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
+    int karpWithDijska(string s,string t);
 };
 
 

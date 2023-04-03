@@ -79,3 +79,10 @@ vector<string> Manager::TopKDistricsForWithMoreTraficPotencial(int k){
 vector<string> Manager::TopKMunicipesForWithMoreTraficPotencial(int k){
     return graph_algorithms.TopKMunicipesForWithMoreTraficPotencial(k);
 }
+
+int Manager::karpWithDijska(string s,string t){
+    int price = INT16_MAX;
+    return graph_algorithms.edmondsKarpWithDijska(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),price);
+}
+
+

@@ -10,7 +10,6 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
-
 using namespace std;
 int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
     double f  = INT_MAX;
@@ -93,7 +92,90 @@ bool GraphAlgorithms::findArgumentingPath(Vertex* s,Vertex* t){
     // TODO
 }
 
+//-----------------------------------------karp using dijka
 
+
+bool GraphAlgorithms::findArgumentingPathWithDijka(Vertex* s,Vertex* t,int &mine){
+
+    for( Vertex*  v : getVertexSet()){
+        v->setVisited(false);
+        v->setDist(INT16_MAX);
+    }
+    s->setVisited(true);
+    MutablePriorityQueue<Vertex> q;
+    s->setDist(0);
+    q.insert(s);
+    while(!q.empty() && !t->isVisited()){
+        Vertex* v = q.extractMin();
+        for( Edge* e : v->getAdj()){
+            testAndVisitDisjka(q,e,e->getDest(),e->getWeight() - e->getFlow(),v->getDist());
+        }
+        for(Edge* e : v->getIncoming()){
+            testAndVisitDisjka(q,e,e->getOrig(),e->getFlow(),v->getDist());
+        }
+    }
+    cout<<"\n"<<t->getDist()<<"\n";
+    if(t->getDist()<mine){
+        mine = t->getDist();
+    }
+    if(t->getDist()>mine){
+        return false;
+    }
+
+    return t->isVisited();
+}
+
+
+
+int GraphAlgorithms::edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price) {
+    price = INT32_MAX;
+    if(s == nullptr || t == nullptr || s == t)
+        return -1;
+    for(auto v : vertexSet ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
+        }
+    }
+    while(findArgumentingPathWithDijka(s,t,price)){
+        int f = finMinResidualaLongPath(s,t);
+        argumentFlowAlongPath(s,t,f);
+    }
+    int sum = 0;
+    for(auto i : t->getIncoming()){
+        sum +=i->getFlow();
+    }
+    //cout<<sum<<endl;
+    return sum;
+    // TODO
+}
+
+
+
+void GraphAlgorithms::testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual , int dist_init){
+    if( ! w->isVisited() && residual>0){
+        w->setVisited(true);
+        w->setPath(e);
+        if(e->getService() == "STANDARD"){
+            w->setDist(dist_init+2);
+        }else{
+            w->setDist(dist_init+4);
+        }
+
+        q.insert(w);
+    }
+    return;
+}
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------
 
 
 

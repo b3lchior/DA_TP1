@@ -17,10 +17,19 @@ int main() {
         cout<<"---------------------------------\n";
     }*/
     //manager.Karp("Lisboa Rossio","Porto Campanhã");
-    //manager.Karp("Porto Campanhã","Lisboa Oriente");
-    auto res = manager.TopKDistricsForWithMoreTraficPotencial(10);
-    for(auto r : res){
-        cout<<r<<"\n";
-    }
+    //cout<<"\n";
+    //manager.Karp("Lisboa Oriente","Porto Campanhã");
+    //auto res = manager.TopKDistricsForWithMoreTraficPotencial(10);
+    //for(auto r : res){
+    //    cout<<r<<"\n";
+    //}
+    //cout<<manager.find_max_number_of_trains_to_station("Porto Campanhã");
+    //manager.Karp("Lisboa Oriente","Porto Campanhã");
+    //cout<<"\n--------------------------------";
+    //cout<<manager.karpWithDijska("Porto Campanhã","Lisboa Oriente");
+    //cout<<"\n-----------------------------------------------------------------------\n";
+    cout<<"\n";
+    cout<<manager.karpWithDijska("Pinhal Novo","Lisboa Oriente");
+    cout<<"\n";
     return 0;
 }
