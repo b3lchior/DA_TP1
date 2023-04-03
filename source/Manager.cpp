@@ -72,3 +72,10 @@ int Manager::find_max_number_of_trains_to_station(string stationID){
     int res = graph_algorithms.find_max_number_of_trains_to_station(stationID);
     return res;
 }
+
+vector<string> Manager::TopKDistricsForWithMoreTraficPotencial(int k){
+    return graph_algorithms.TopKDistricsForWithMoreTraficPotencial(k);
+}
+vector<string> Manager::TopKMunicipesForWithMoreTraficPotencial(int k){
+    return graph_algorithms.TopKMunicipesForWithMoreTraficPotencial(k);
+}

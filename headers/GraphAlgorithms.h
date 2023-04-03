@@ -33,9 +33,15 @@ public:
  */
     vector<MaxTrainPair> find_max_flow();
     int find_max_number_of_trains_to_station(string stationID);
+    vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
+    vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
 protected:
     vector<Vertex*> find_vertexes_with_only_one_edge();
     bool findArgumentingPath(Vertex* s,Vertex* t);
+    vector<string> getMunicipes();
+    vector<string> getDistrics();
+    vector<Vertex*> findVertexsInMunicipe(string municipe);
+    vector<Vertex*> findVertexsInDistricts(string district);
     int finMinResidualaLongPath(Vertex* s,Vertex* t);
     void argumentFlowAlongPath(Vertex* s,Vertex* t,int f);
     void testAndVisit(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);

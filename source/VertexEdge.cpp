@@ -65,6 +65,18 @@ bool Vertex::operator<(Vertex & vertex) const {
 string Vertex::getId() const {
     return this->id;
 }
+string Vertex::getDistric(){
+    return district;
+}
+string Vertex::getMunicipality(){
+    return municipality;
+}
+string Vertex::getTownship(){
+    return township;
+}
+string Vertex::getLine(){
+    return line;
+}
 
 std::vector<Edge*> Vertex::getAdj() const {
     return this->adj;

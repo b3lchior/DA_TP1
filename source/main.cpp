@@ -18,6 +18,9 @@ int main() {
     }*/
     //manager.Karp("Lisboa Rossio","Porto Campanhã");
     //manager.Karp("Porto Campanhã","Lisboa Oriente");
-    cout<<manager.find_max_number_of_trains_to_station("Porto Campanhã");
+    auto res = manager.TopKDistricsForWithMoreTraficPotencial(10);
+    for(auto r : res){
+        cout<<r<<"\n";
+    }
     return 0;
 }

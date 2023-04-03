@@ -9,6 +9,8 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <map>
+
 using namespace std;
 int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
     double f  = INT_MAX;
@@ -145,7 +147,104 @@ int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
     return edmondsKarp(s,t);
 }
 
+vector<string> GraphAlgorithms::getMunicipes(){
+    vector<string> res;
+    for(auto v : vertexSet){
+        if(find(res.begin(),res.end(),v->getMunicipality()) == res.end()){
+            res.push_back(v->getMunicipality());
+        }
+    }
+    return res;
+}
+vector<string>  GraphAlgorithms::getDistrics(){
+    vector<string> res;
+    for(auto v : vertexSet){
+        if(find(res.begin(),res.end(),v->getDistric()) == res.end()){
+            res.push_back(v->getDistric());
+        }
+    }
+    return res;
+}
+vector<Vertex*>  GraphAlgorithms::findVertexsInMunicipe(string municipe){
+    vector<Vertex*> res;
+    for(auto v : vertexSet){
+        if(municipe == v->getMunicipality()){
+            res.push_back(v);
+        }
+    }
+    return res;
+}
+vector<Vertex*>  GraphAlgorithms::findVertexsInDistricts(string district){
+    vector<Vertex*> res;
+    for(auto v : vertexSet){
+        if(district == v->getDistric()){
+            res.push_back(v);
+        }
+    }
+    return res;
+}
 
+struct FlowPerMunicOrDis {
+    string DistrOrMunic;
+    int numTrains;
+};
+
+bool cmp(FlowPerMunicOrDis& a,
+         FlowPerMunicOrDis& b)
+{
+    return a.numTrains > b.numTrains;
+}
+vector<string> GraphAlgorithms::TopKMunicipesForWithMoreTraficPotencial(int k){
+    vector<FlowPerMunicOrDis> res;
+    vector<string> municipes = getMunicipes();
+    for(string municipe : municipes){
+        vector<Vertex*> stationsPerMunicipe = findVertexsInMunicipe(municipe);
+        FlowPerMunicOrDis tmp;
+        tmp.DistrOrMunic = municipe;
+        tmp.numTrains=0;
+
+        for(int i = 0 ; i <stationsPerMunicipe.size();i++){
+            for(int j = i+1 ; j <stationsPerMunicipe.size();j++){
+                tmp.numTrains+= edmondsKarp(stationsPerMunicipe[i],stationsPerMunicipe[j]);
+            }
+        }
+        res.push_back(tmp);
+    }
+    sort(res.begin(),res.end(),cmp);
+    vector<string> res_ret;
+    for(int i = 0 ; i < k ; i++){
+        if(i>=res.size()){
+            break;
+        }
+        res_ret.push_back(res[i].DistrOrMunic);
+    }
+    return res_ret;
+}
+vector<string> GraphAlgorithms::TopKDistricsForWithMoreTraficPotencial(int k){
+    vector<FlowPerMunicOrDis> res;
+    vector<string> districts = getDistrics();
+    for(string district : districts){
+        vector<Vertex*> stationsPerDistrict = findVertexsInDistricts(district);
+        FlowPerMunicOrDis tmp;
+        tmp.DistrOrMunic = district;
+        tmp.numTrains=0;
+        for(int i = 0 ; i <stationsPerDistrict.size();i++){
+            for(int j = i+1 ; j <stationsPerDistrict.size();j++){
+                tmp.numTrains+= edmondsKarp(stationsPerDistrict[i],stationsPerDistrict[j]);
+            }
+        }
+        res.push_back(tmp);
+    }
+    sort(res.begin(),res.end(),cmp);
+    vector<string> res_ret;
+    for(int i = 0 ; i < k ; i++){
+        if(i>=res.size()){
+            break;
+        }
+        res_ret.push_back(res[i].DistrOrMunic);
+    }
+    return res_ret;
+}
 
 
 
