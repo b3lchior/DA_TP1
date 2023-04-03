@@ -17,6 +17,7 @@ int main() {
         cout<<"---------------------------------\n";
     }*/
     //manager.Karp("Lisboa Rossio","Porto Campanhã");
-    manager.MaxFlowFromNetwork();
+    //manager.Karp("Porto Campanhã","Lisboa Oriente");
+    cout<<manager.find_max_number_of_trains_to_station("Porto Campanhã");
     return 0;
 }

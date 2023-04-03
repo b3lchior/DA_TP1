@@ -43,6 +43,28 @@ bool Graph::addVertex(string name,string district,string municipality,string tow
     return true;
 }
 
+bool Graph::removeVertex(const string &id) {
+    bool result = false;
+    if(findVertex(id)==nullptr){
+        return false;
+    }
+    auto it = vertexSet.begin();
+    while(it != vertexSet.end()){
+        if( (*it)->getId()==id){
+            result = true;
+            it = vertexSet.erase(it);
+        }else{
+            if((*it)->removeEdge(id)){
+                result = true;
+            }
+            it++;
+        }
+    }
+
+    return result;
+}
+
+
 /*
  * Adds an edge to a graph (this), given the contents of the source and
  * destination vertices and the edge weight (w).

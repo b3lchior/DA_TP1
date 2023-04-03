@@ -16,6 +16,7 @@ public:
     Graph getGraph();
     void Karp(string source, string target);
     void MaxFlowFromNetwork();
+    int find_max_number_of_trains_to_station(string stationID);
 };
 
 

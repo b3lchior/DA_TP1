@@ -69,9 +69,8 @@ bool GraphAlgorithms::findArgumentingPath(Vertex* s,Vertex* t){
 }
 
 
- int GraphAlgorithms::edmondsKarp(string source, string target) {
-    Vertex* s = findVertex(source);
-    Vertex* t = findVertex(target);
+
+ int GraphAlgorithms::edmondsKarp(Vertex* s,Vertex* t) {
     if(s == nullptr || t == nullptr || s == t)
         return -1;
     for(auto v : vertexSet ){
@@ -108,8 +107,8 @@ vector<MaxTrainPair> GraphAlgorithms::find_max_flow(){
     for(int j = 0 ; j <vertexSet.size();j++){
         for(int i =j+1; i <vertexSet.size();i++){
             MaxTrainPair tmp;
-            tmp.station1 = vertexSet[i]->getId();
-            tmp.station2 = vertexSet[j]->getId();
+            tmp.station1 = vertexSet[i];
+            tmp.station2 = vertexSet[j];
             tmp.numTrains = edmondsKarp(tmp.station1,tmp.station2);
             if (res[0].numTrains < tmp.numTrains){
                 res.clear();
@@ -122,6 +121,33 @@ vector<MaxTrainPair> GraphAlgorithms::find_max_flow(){
     }
     return res;
 }
+
+vector<Vertex*> GraphAlgorithms::find_vertexes_with_only_one_edge(){
+    vector<Vertex*> res;
+    for(Vertex* vertex : vertexSet){
+        if(vertex->getAdj().size() == 1 && vertex->getIncoming().size() == 1){
+            res.push_back(vertex);
+        }
+    }
+    return res;
+}
+
+//read the data again after this function
+int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
+    Vertex* t = findVertex(stationID);
+    addVertex("DELETE","DELETE","DELETE","DELETE","DELETE");
+    vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
+    for(auto v : srcs){
+        addEdge("DELETE",v->getId(),INT32_MAX,"delete");
+    }
+    Vertex* s = findVertex("DELETE");
+    removeVertex("DELETE");
+    return edmondsKarp(s,t);
+}
+
+
+
+
 
 
 

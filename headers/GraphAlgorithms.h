@@ -8,8 +8,8 @@
 
 
 struct MaxTrainPair {
-    string station1;
-    string station2;
+    Vertex* station1;
+    Vertex* station2;
     int numTrains;
 };
 
@@ -24,7 +24,7 @@ public:
  *
  * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
  */
-    int edmondsKarp(string source, string target);
+    int edmondsKarp(Vertex* s,Vertex* t);
     /**
  * @brief Finds the maximum flow between all pairs of vertices in the graph.
  * @return A vector of MaxTrainPair objects representing the maximum flow between each pair of vertices.
@@ -32,7 +32,9 @@ public:
  * This function has a time complexity of O(V^3 * E^2), where V is the number of vertices and E is the number of edges in the graph.
  */
     vector<MaxTrainPair> find_max_flow();
+    int find_max_number_of_trains_to_station(string stationID);
 protected:
+    vector<Vertex*> find_vertexes_with_only_one_edge();
     bool findArgumentingPath(Vertex* s,Vertex* t);
     int finMinResidualaLongPath(Vertex* s,Vertex* t);
     void argumentFlowAlongPath(Vertex* s,Vertex* t,int f);

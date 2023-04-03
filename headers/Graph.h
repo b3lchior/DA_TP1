@@ -21,6 +21,7 @@ public:
      *  Returns true if successful, and false if a vertex with that content already exists.
      */
     bool addVertex(string name,string district,string municipality,string township,string line);
+    bool removeVertex(const string &id);
 
     /*
      * Adds an edge to a graph (this), given the contents of the source and

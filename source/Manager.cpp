@@ -56,12 +56,19 @@ void Manager::ReadRoutes(){
     }
 }
 void Manager::Karp(string source, string target){
-    cout << graph_algorithms.edmondsKarp(source,target);
+    Vertex* s = graph_algorithms.findVertex(source);
+    Vertex* t = graph_algorithms.findVertex(target);
+    cout << graph_algorithms.edmondsKarp(s,t);
 }
 
 void Manager::MaxFlowFromNetwork(){
     vector<MaxTrainPair> res = graph_algorithms.find_max_flow();
     for(auto result : res){
-        cout<<"\n"<<result.station1<<"------"<<result.numTrains<<"-------------->"<<result.station2<<"\n";
+        cout<<"\n"<<result.station1->getId()<<"------"<<result.numTrains<<"-------------->"<<result.station2->getId()<<"\n";
     }
+}
+
+int Manager::find_max_number_of_trains_to_station(string stationID){
+    int res = graph_algorithms.find_max_number_of_trains_to_station(stationID);
+    return res;
 }
