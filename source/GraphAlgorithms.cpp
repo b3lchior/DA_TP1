@@ -228,8 +228,9 @@ int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
         addEdge("DELETE",v->getId(),INT16_MAX,"delete");
     }
     Vertex* s = findVertex("DELETE");
+    auto result = edmondsKarp(s,t);
     removeVertex("DELETE");
-    return edmondsKarp(s,t);
+    return result;
 }
 
 vector<string> GraphAlgorithms::getMunicipes(){
@@ -437,8 +438,8 @@ int GraphAlgorithms::find_max_number_of_trains_to_station_with_congested_network
         addEdge("DELETE",v->getId(),INT32_MAX,"delete");
     }
     Vertex* s = findVertex("DELETE");
-    removeVertex("DELETE");
-    return edmondsKarpReducedConnectivity(s,t,edgesReduced);
+    auto result = edmondsKarp(s,t);
+    return result;
 }
 
 bool cmpStation(AfectedStation& a,

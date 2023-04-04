@@ -44,25 +44,19 @@ bool Graph::addVertex(string name,string district,string municipality,string tow
 }
 
 bool Graph::removeVertex(const string &id) {
-    bool result = false;
-    if(findVertex(id)==nullptr){
-        return false;
-    }
-    auto it = vertexSet.begin();
-    while(it != vertexSet.end()){
-            if((*it)->removeEdge(id)){
-                result = true;
+    for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
+        if ((*it)->getId() == id) {
+            auto v = *it;
+            v->removeOutgoingEdges();
+            for (auto u : vertexSet) {
+                u->removeEdge(v->getId());
             }
-            it++;
-    }
-    while(it != vertexSet.end()){
-        if( (*it)->getId()==id){
-            result = true;
-            it = vertexSet.erase(it);
+            vertexSet.erase(it);
+            delete v;
+            return true;
         }
     }
-
-    return result;
+    return false;
 }
 
 
