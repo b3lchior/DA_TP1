@@ -10,7 +10,7 @@ void Manager::read_files(){
     ReadStations();
     ReadRoutes();
 }
-Graph Manager::getGraph(){
+GraphAlgorithms Manager::getGraph(){
     return graph_algorithms;
 }
 void Manager::ReadStations() {
@@ -55,7 +55,7 @@ void Manager::ReadRoutes(){
         graph_algorithms.addBidirectionalEdge(station_A,station_B, stoi(capacity),service);
     }
 }
-void Manager::Karp(string source, string target){
+void Manager::MaxFlow(string source, string target){
     Vertex* s = graph_algorithms.findVertex(source);
     Vertex* t = graph_algorithms.findVertex(target);
     cout << graph_algorithms.edmondsKarp(s,t);
@@ -80,17 +80,25 @@ vector<string> Manager::TopKMunicipesForWithMoreTraficPotencial(int k){
     return graph_algorithms.TopKMunicipesForWithMoreTraficPotencial(k);
 }
 
-int Manager::karpWithDijska(string s,string t){
+int Manager::MaxFlowWithMinCost(string s,string t){
     int price = INT16_MAX;
     int tmp = graph_algorithms.edmondsKarpWithDijska(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),price);
     cout<<"Number of trains :"<<tmp<<"Price :"<<tmp*price;
     return 1;
 }
+// é assim que se usa as funções
+//vector<Edge> edges;
+//edges.push_back(Edge(graph.findVertex("Porto Campanhã"),graph.findVertex("Espinho"),6,"STANDARD"));
+//cout<<manager.MaxFlowWithWithReducedConectivity("Porto Campanhã","Espinho" , edges);
 
-int Manager::KarpWithReducedConectivity(string s,string t , vector<Edge> unusableEdges){
+int Manager::MaxFlowWithWithReducedConectivity(string s,string t , vector<Edge> unusableEdges){
     vector<Edge*> edges;
     for(Edge e : unusableEdges){
         edges.push_back(graph_algorithms.findEdge(e));
     }
     return graph_algorithms.edmondsKarpReducedConnectivity(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),edges);
+}
+
+vector<AfectedStation> Manager::TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<Edge> unusedEdges){
+    return graph_algorithms.TopKStationsThatAreAffectedByReducedConectivity(k,unusedEdges);
 }

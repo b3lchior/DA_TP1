@@ -33,9 +33,11 @@ Edge * Vertex::addEdge(Vertex *d, double w , string service) {
 bool Vertex::removeEdge(string destID) {
     bool removedEdge = false;
     auto it = adj.begin();
+    //cout<<"\n\n\n\n";
     while (it != adj.end()) {
         Edge *edge = *it;
         Vertex *dest = edge->getDest();
+        //cout<<dest->getId()<<"\n";
         if (dest->getId() == destID) {
             it = adj.erase(it);
             // Also remove the corresponding edge from the incoming list

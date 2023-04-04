@@ -18,11 +18,13 @@ int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
         if(e->getDest() == v){
             f = std::min(f,e->getWeight() - e->getFlow());
             v = e->getOrig();
+            //cout<<v->getId()<<"------>"<<e->getDest()->getId()<<"  price :"<<e->getService()<<"   weight :"<<e->getWeight()-e->getFlow()<<"\n";
         }else{
             f = std::min(f , e->getFlow());
             v = e->getDest();
         }
     }
+    //cout<<"\nmin trains :"<<f<<"\n";
     return f;
 }
 void GraphAlgorithms::argumentFlowAlongPath(Vertex* s,Vertex* t,int f){
@@ -114,7 +116,7 @@ bool GraphAlgorithms::findArgumentingPathWithDijka(Vertex* s,Vertex* t,int &mine
             testAndVisitDisjka(q,e,e->getOrig(),e->getFlow(),v->getDist());
         }
     }
-    cout<<"\n"<<t->getDist()<<"\n";
+    //cout<<"\nprice min :"<<t->getDist()<<"\n";
     if(t->getDist()<mine){
         mine = t->getDist();
     }
@@ -222,7 +224,8 @@ int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
     addVertex("DELETE","DELETE","DELETE","DELETE","DELETE");
     vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
     for(auto v : srcs){
-        addEdge("DELETE",v->getId(),INT32_MAX,"delete");
+        //cout<<"AddEdge";
+        addEdge("DELETE",v->getId(),INT16_MAX,"delete");
     }
     Vertex* s = findVertex("DELETE");
     removeVertex("DELETE");
@@ -271,7 +274,7 @@ struct FlowPerMunicOrDis {
     int numTrains;
 };
 
-bool cmp(FlowPerMunicOrDis& a,
+bool cmpFlow(FlowPerMunicOrDis& a,
          FlowPerMunicOrDis& b)
 {
     return a.numTrains > b.numTrains;
@@ -292,7 +295,7 @@ vector<string> GraphAlgorithms::TopKMunicipesForWithMoreTraficPotencial(int k){
         }
         res.push_back(tmp);
     }
-    sort(res.begin(),res.end(),cmp);
+    sort(res.begin(),res.end(),cmpFlow);
     vector<string> res_ret;
     for(int i = 0 ; i < k ; i++){
         if(i>=res.size()){
@@ -317,7 +320,7 @@ vector<string> GraphAlgorithms::TopKDistricsForWithMoreTraficPotencial(int k){
         }
         res.push_back(tmp);
     }
-    sort(res.begin(),res.end(),cmp);
+    sort(res.begin(),res.end(),cmpFlow);
     vector<string> res_ret;
     for(int i = 0 ; i < k ; i++){
         if(i>=res.size()){
@@ -425,5 +428,49 @@ int GraphAlgorithms::edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<
     // TODO
 }
 
+//-------------------------------------------congested network
+int GraphAlgorithms::find_max_number_of_trains_to_station_with_congested_network(string stationID,vector<Edge*> edgesReduced){
+    Vertex* t = findVertex(stationID);
+    addVertex("DELETE","DELETE","DELETE","DELETE","DELETE");
+    vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
+    for(auto v : srcs){
+        addEdge("DELETE",v->getId(),INT32_MAX,"delete");
+    }
+    Vertex* s = findVertex("DELETE");
+    removeVertex("DELETE");
+    return edmondsKarpReducedConnectivity(s,t,edgesReduced);
+}
+
+bool cmpStation(AfectedStation& a,
+         AfectedStation& b)
+{
+    return a.numTrainsBefore-a.numTrainsAfter > b.numTrainsBefore - b.numTrainsAfter;
+}
+
+vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<Edge> unusableEdges){
+    vector<AfectedStation> res;
+    vector<AfectedStation> resTmp;
+    for(int i = 0 ; i<vertexSet.size();i++){
+        AfectedStation tmp;
+        tmp.station = vertexSet[i];
+        tmp.numTrainsBefore=find_max_number_of_trains_to_station(vertexSet[i]->getId());
+        resTmp.push_back(tmp);
+    }
+    vector<Edge*> edges;
+    for(Edge e : unusableEdges){
+        edges.push_back(findEdge(e));
+    }
+    for(int i = 0 ; i<vertexSet.size();i++){
+        resTmp[i].numTrainsAfter=find_max_number_of_trains_to_station_with_congested_network(vertexSet[i]->getId(),edges);
+    }
+    sort(resTmp.begin(),resTmp.end(), cmpStation);
+    for(int i = 0 ; i<vertexSet.size();i++){
+        if(i>k){
+            break;
+        }
+        res.push_back(resTmp[i]);
+    }
+    return res;
+}
 
 

@@ -12,7 +12,11 @@ struct MaxTrainPair {
     Vertex* station2;
     int numTrains;
 };
-
+struct AfectedStation{
+    Vertex* station;
+    int numTrainsBefore;
+    int numTrainsAfter;
+};
 
 class GraphAlgorithms: public Graph {
 public:
@@ -37,15 +41,17 @@ public:
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
     int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
     int edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<Edge*> edgesReduced);
+    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<Edge> unusedEdges);
+    vector<string> getMunicipes();
+    vector<string> getDistrics();
+    vector<Vertex*> findVertexsInMunicipe(string municipe);
+    vector<Vertex*> findVertexsInDistricts(string district);
+    int find_max_number_of_trains_to_station_with_congested_network(string stationID,vector<Edge*> edgesReduced);
 protected:
     bool findArgumentingPathWithDijka(Vertex* s,Vertex* t,int &mim);
     void testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual, int dist_init);
     vector<Vertex*> find_vertexes_with_only_one_edge();
     bool findArgumentingPath(Vertex* s,Vertex* t);
-    vector<string> getMunicipes();
-    vector<string> getDistrics();
-    vector<Vertex*> findVertexsInMunicipe(string municipe);
-    vector<Vertex*> findVertexsInDistricts(string district);
     int finMinResidualaLongPath(Vertex* s,Vertex* t);
     void argumentFlowAlongPath(Vertex* s,Vertex* t,int f);
     void testAndVisit(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);
@@ -54,6 +60,7 @@ protected:
     void argumentFlowAlongPathReducedConnectivity(Vertex* s,Vertex* t,int f);
     void testAndVisitReducedConnectivity(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);
     bool findArgumentingPathReducedConnectivity(Vertex* s,Vertex* t);
+
 
 };
 

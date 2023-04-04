@@ -50,14 +50,15 @@ bool Graph::removeVertex(const string &id) {
     }
     auto it = vertexSet.begin();
     while(it != vertexSet.end()){
-        if( (*it)->getId()==id){
-            result = true;
-            it = vertexSet.erase(it);
-        }else{
             if((*it)->removeEdge(id)){
                 result = true;
             }
             it++;
+    }
+    while(it != vertexSet.end()){
+        if( (*it)->getId()==id){
+            result = true;
+            it = vertexSet.erase(it);
         }
     }
 
