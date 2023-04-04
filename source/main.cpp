@@ -35,13 +35,16 @@ int main() {
     //edges.push_back(Edge(graph.findVertex("Pinhal Novo"),graph.findVertex("Grândola"),4,"ALFA PENDULAR"));
     //edges.push_back(Edge(graph.findVertex("Entrecampos"),graph.findVertex("Pinhal Novo"),10,"ALFA PENDULAR"));
     //cout<<manager.MaxFlowWithWithReducedConectivity("Pinhal Novo","Porto Campanhã" , edges);
-    vector<Edge> edges;
-    edges.push_back(Edge(graph.findVertex("Pinhal Novo"),graph.findVertex("Grândola"),4,"ALFA PENDULAR"));
-    edges.push_back(Edge(graph.findVertex("Entrecampos"),graph.findVertex("Pinhal Novo"),10,"ALFA PENDULAR"));
-    edges.push_back(Edge(graph.findVertex("São João do Estoril"),graph.findVertex("Estoril"),4,"STANDARD"));
-    auto vetor = manager.TopKStationsThatAreAffectedByReducedConectivity(10,edges);
+    vector<EdgeSearch> edges;
+    EdgeSearch tmp;
+    edges.push_back({"Pinhal Novo","Grândola"});
+    edges.push_back({"Entrecampos","Pinhal Novo"});
+    edges.push_back({"São João do Estoril","Estoril"});
+    auto vetor = manager.TopKStationsThatAreAffectedByReducedConectivity(15,edges);
     for(auto v : vetor){
-        cout<<v.station->getId()<<"    diferença :"<<v.numTrainsBefore-v.numTrainsAfter<<"\n";
+
+            cout<<v.station->getId()<<"    diferença :"<<v.numTrainsBefore-v.numTrainsAfter<<"\n";
+
     }
     //    vector<Edge*> edges;
     //    cout<<"\n";

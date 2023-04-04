@@ -82,9 +82,18 @@ Edge* Graph::findEdge(Vertex * dest,Vertex *orig,double weight,string service){
     }
 }
 
-Edge* Graph::findEdge(Edge e){
-    for(Edge* e : e.getOrig()->getAdj()){
-        if(e->getDest() == e->getDest() && e->getService() == e->getService()){
+Edge* Graph::findEdge(Edge e1){
+    for(Edge* e : e1.getOrig()->getAdj()){
+        if(e->getDest() == e1.getDest() && e->getService() == e1.getService()){
+            return e;
+        }
+    }
+}
+
+Edge* Graph::findEdge(string orig , string dest){
+    Vertex* v = findVertex(orig);
+    for(Edge* e : v->getAdj()){
+        if(e->getDest()->getId() == dest ){
             return e;
         }
     }

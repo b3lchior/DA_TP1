@@ -17,7 +17,10 @@ struct AfectedStation{
     int numTrainsBefore;
     int numTrainsAfter;
 };
-
+struct EdgeSearch{
+    string station1;
+    string station2;
+};
 class GraphAlgorithms: public Graph {
 public:
     /**
@@ -41,7 +44,7 @@ public:
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
     int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
     int edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<Edge*> edgesReduced);
-    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<Edge> unusedEdges);
+    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<EdgeSearch> unusedEdges);
     vector<string> getMunicipes();
     vector<string> getDistrics();
     vector<Vertex*> findVertexsInMunicipe(string municipe);

@@ -99,6 +99,6 @@ int Manager::MaxFlowWithWithReducedConectivity(string s,string t , vector<Edge> 
     return graph_algorithms.edmondsKarpReducedConnectivity(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),edges);
 }
 
-vector<AfectedStation> Manager::TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<Edge> unusedEdges){
+vector<AfectedStation> Manager::TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges){
     return graph_algorithms.TopKStationsThatAreAffectedByReducedConectivity(k,unusedEdges);
 }

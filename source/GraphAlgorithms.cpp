@@ -451,7 +451,7 @@ bool cmpStation(AfectedStation& a,
     return a.numTrainsBefore-a.numTrainsAfter > b.numTrainsBefore - b.numTrainsAfter;
 }
 
-vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<Edge> unusableEdges){
+vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<EdgeSearch> unusableEdges){
     vector<AfectedStation> res;
     vector<AfectedStation> resTmp;
 
@@ -470,8 +470,11 @@ vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedCone
         resTmp.push_back(tmp);
     }
     vector<Edge*> edges;
-    for(Edge e : unusableEdges){
-        edges.push_back(findEdge(e));
+    for(EdgeSearch& e : unusableEdges){
+        Edge * e1 = findEdge(e.station1,e.station2);
+        edges.push_back(e1);
+        edges.push_back(e1->getReverse());
+        //cout<<e1->getOrig()->getId()<<"    "<<e1->getDest()->getId()<<"\n";
     }
     for(int i = 0 ; i<vertexSet.size();i++){
         resTmp[i].numTrainsAfter=find_max_number_of_trains_to_station_with_congested_network(vertexSet[i]->getId(),edges);
