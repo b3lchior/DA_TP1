@@ -9,6 +9,8 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <climits>
+
 using namespace std;
 int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
     double f  = INT_MAX;

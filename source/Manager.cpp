@@ -55,10 +55,13 @@ void Manager::ReadRoutes(){
         graph_algorithms.addBidirectionalEdge(station_A,station_B, stoi(capacity),service);
     }
 }
-void Manager::Karp(string source, string target){
+int Manager::Karp(string source, string target){
     Vertex* s = graph_algorithms.findVertex(source);
     Vertex* t = graph_algorithms.findVertex(target);
-    cout << graph_algorithms.edmondsKarp(s,t);
+    if( s== nullptr or t== nullptr){
+        return -1;
+    }
+    return graph_algorithms.edmondsKarp(s,t);
 }
 
 void Manager::MaxFlowFromNetwork(){
