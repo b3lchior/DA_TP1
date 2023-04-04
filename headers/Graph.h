@@ -30,7 +30,8 @@ public:
      */
     bool addEdge(const string &sourc, const string &dest, double w , string service);
     bool addBidirectionalEdge(const string &sourc, const string &dest, double w, string service);
-
+    Edge* findEdge(Vertex * dest,Vertex *orig,double weight,string service);
+    Edge* findEdge(Edge e);
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
 protected:

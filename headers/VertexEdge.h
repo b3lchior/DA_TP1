@@ -33,7 +33,10 @@ public:
     double getDist() const;
     Edge *getPath() const;
     std::vector<Edge *> getIncoming() const;
-
+    string getDistric();
+    string getMunicipality();
+    string getTownship();
+    string getLine();
     void setId(int info);
     void setVisited(bool visited);
     void setProcesssing(bool processing);
