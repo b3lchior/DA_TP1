@@ -48,6 +48,7 @@ public:
     vector<Vertex*> findVertexsInDistricts(string district);
     int find_max_number_of_trains_to_station_with_congested_network(string stationID,vector<Edge*> edgesReduced);
 protected:
+    int find_max_number_of_trains_to_stationAux(string stationID);
     bool findArgumentingPathWithDijka(Vertex* s,Vertex* t,int &mim);
     void testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual, int dist_init);
     vector<Vertex*> find_vertexes_with_only_one_edge();
