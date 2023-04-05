@@ -36,24 +36,25 @@ int main() {
     //edges.push_back({"Entrecampos","Pinhal Novo"});
     //cout<<manager.MaxFlowWithWithReducedConectivity("Pinhal Novo","Porto Campanhã" , edges);
     //vector<EdgeSearch> edges;
-    //EdgeSearch tmp;
-    //edges.push_back({"Pinhal Novo","Grândola"});
-    //edges.push_back({"Entrecampos","Pinhal Novo"});
-    //edges.push_back({"São João do Estoril","Estoril"});
-    //auto vetor = manager.TopKStationsThatAreAffectedByReducedConectivity(15,edges);
-    //for(auto v : vetor){
+    vector<EdgeSearch> edges;
+    edges.push_back({"Pinhal Novo","Grândola"});
+    edges.push_back({"Entrecampos","Pinhal Novo"});
+    edges.push_back({"São João do Estoril","Estoril"});
+    auto vetor = manager.TopKStationsThatAreAffectedByReducedConectivity(100000,edges);
+    for(auto v : vetor){
 
-    //        cout<<v.station->getId()<<"    diferença :"<<v.numTrainsBefore-v.numTrainsAfter<<"\n";
+            cout<<v.station->getId()<<"    diferença :"<<v.numTrainsBefore-v.numTrainsAfter<<"       "<<v.numTrainsBefore<<"\n";
 
-    //}
+    }
     //    vector<Edge*> edges;
     //    cout<<"\n";
     //    cout<<manager.find_max_number_of_trains_to_station("Lisboa Oriente");
     //    cout<<"\n";
     //    cout<<manager.find_max_number_of_trains_to_station("Lisboa Oriente");
-    auto v = manager.TopKDistricsForWithMoreTraficPotencial(30);
-    for(auto e : v){
-        cout<<e.DistrOrMunic<<"         "<<e.numTrains<<"\n";
-    }
+    //auto v = manager.TopKDistricsForWithMoreTraficPotencial(30);
+    //for(auto e : v){
+    //    cout<<e.DistrOrMunic<<"         "<<e.numTrains<<"\n";
+    //}
+    //cout<<manager.find_max_number_of_trains_to_station("Vila Real de Stº António");
     return 0;
 }

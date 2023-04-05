@@ -225,7 +225,9 @@ int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
     vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
     for(auto v : srcs){
         //cout<<"AddEdge";
-        addEdge("DELETE",v->getId(),INT16_MAX,"delete");
+        if(v->getId() != stationID){
+            addEdge("DELETE",v->getId(),INT16_MAX,"delete");
+        }
     }
     Vertex* s = findVertex("DELETE");
     auto result = edmondsKarp(s,t);
@@ -453,13 +455,24 @@ int GraphAlgorithms::edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<
 int GraphAlgorithms::find_max_number_of_trains_to_stationAux(string stationID){
     Vertex* t = findVertex(stationID);
     Vertex* s = findVertex("DELETE");
-    auto result = edmondsKarp(s,t);
+    vector<Edge*> edgesReduced;
+    for(Edge* e : s->getAdj()){
+        if(e->getDest()->getId()==stationID){
+            edgesReduced.push_back(e);
+        }
+    }
+    auto result = edmondsKarpReducedConnectivity(s,t,edgesReduced);
     return result;
 }
 
 int GraphAlgorithms::find_max_number_of_trains_to_station_with_congested_network(string stationID,vector<Edge*> edgesReduced){
     Vertex* t = findVertex(stationID);
     Vertex* s = findVertex("DELETE");
+    for(Edge* e : s->getAdj()){
+        if(e->getDest()->getId()==stationID){
+            edgesReduced.push_back(e);
+        }
+    }
     auto result = edmondsKarpReducedConnectivity(s,t,edgesReduced);
     return result;
 }
@@ -477,7 +490,7 @@ vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedCone
     addVertex("DELETE","DELETE","DELETE","DELETE","DELETE");
     vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
     for(auto v : srcs){
-        addEdge("DELETE",v->getId(),INT16_MAX,"delete");
+        addBidirectionalEdge("DELETE",v->getId(),INT16_MAX,"delete");
     }
 
 
