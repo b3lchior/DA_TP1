@@ -33,9 +33,11 @@ Edge * Vertex::addEdge(Vertex *d, double w , string service) {
 bool Vertex::removeEdge(string destID) {
     bool removedEdge = false;
     auto it = adj.begin();
+    //cout<<"\n\n\n\n";
     while (it != adj.end()) {
         Edge *edge = *it;
         Vertex *dest = edge->getDest();
+        //cout<<dest->getId()<<"\n";
         if (dest->getId() == destID) {
             it = adj.erase(it);
             // Also remove the corresponding edge from the incoming list
@@ -56,6 +58,30 @@ bool Vertex::removeEdge(string destID) {
         }
     }
     return removedEdge;
+}
+
+void Vertex::removeOutgoingEdges() {
+    auto it = adj.begin();
+    while (it != adj.end()) {
+        Edge *edge = *it;
+        it = adj.erase(it);
+        deleteEdge(edge);
+    }
+}
+
+void Vertex::deleteEdge(Edge *edge) {
+    Vertex *dest = edge->getDest();
+    // Remove the corresponding edge from the incoming list
+    auto it = dest->incoming.begin();
+    while (it != dest->incoming.end()) {
+        if ((*it)->getOrig()->getId() == id) {
+            it = dest->incoming.erase(it);
+        }
+        else {
+            it++;
+        }
+    }
+    delete edge;
 }
 
 bool Vertex::operator<(Vertex & vertex) const {

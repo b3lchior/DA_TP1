@@ -44,24 +44,19 @@ bool Graph::addVertex(string name,string district,string municipality,string tow
 }
 
 bool Graph::removeVertex(const string &id) {
-    bool result = false;
-    if(findVertex(id)==nullptr){
-        return false;
-    }
-    auto it = vertexSet.begin();
-    while(it != vertexSet.end()){
-        if( (*it)->getId()==id){
-            result = true;
-            it = vertexSet.erase(it);
-        }else{
-            if((*it)->removeEdge(id)){
-                result = true;
+    for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
+        if ((*it)->getId() == id) {
+            auto v = *it;
+            v->removeOutgoingEdges();
+            for (auto u : vertexSet) {
+                u->removeEdge(v->getId());
             }
-            it++;
+            vertexSet.erase(it);
+            delete v;
+            return true;
         }
     }
-
-    return result;
+    return false;
 }
 
 
@@ -87,9 +82,18 @@ Edge* Graph::findEdge(Vertex * dest,Vertex *orig,double weight,string service){
     }
 }
 
-Edge* Graph::findEdge(Edge e){
-    for(Edge* e : e.getOrig()->getAdj()){
-        if(e->getDest() == e->getDest() && e->getService() == e->getService()){
+Edge* Graph::findEdge(Edge e1){
+    for(Edge* e : e1.getOrig()->getAdj()){
+        if(e->getDest() == e1.getDest() && e->getService() == e1.getService()){
+            return e;
+        }
+    }
+}
+
+Edge* Graph::findEdge(string orig , string dest){
+    Vertex* v = findVertex(orig);
+    for(Edge* e : v->getAdj()){
+        if(e->getDest()->getId() == dest ){
             return e;
         }
     }
