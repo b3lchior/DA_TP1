@@ -91,10 +91,10 @@ int Manager::MaxFlowWithMinCost(string s,string t){
 //edges.push_back(Edge(graph.findVertex("Porto Campanhã"),graph.findVertex("Espinho"),6,"STANDARD"));
 //cout<<manager.MaxFlowWithWithReducedConectivity("Porto Campanhã","Espinho" , edges);
 
-int Manager::MaxFlowWithWithReducedConectivity(string s,string t , vector<Edge> unusableEdges){
+int Manager::MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges){
     vector<Edge*> edges;
-    for(Edge e : unusableEdges){
-        edges.push_back(graph_algorithms.findEdge(e));
+    for(EdgeSearch e : unusableEdges){
+        edges.push_back(graph_algorithms.findEdge(e.station1 , e.station2));
     }
     return graph_algorithms.edmondsKarpReducedConnectivity(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),edges);
 }
