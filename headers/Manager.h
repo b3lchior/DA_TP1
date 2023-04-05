@@ -20,7 +20,7 @@ public:
     vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
     vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
     int MaxFlowWithMinCost(string s,string t);
-    int MaxFlowWithWithReducedConectivity(string s,string t , vector<Edge> unusableEdges);
+    int MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges);
     vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges);
 };
 

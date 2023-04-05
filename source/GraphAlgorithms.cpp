@@ -409,6 +409,11 @@ int GraphAlgorithms::edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<
         e->setSelected(true);
         Edge* e2 = e->getReverse();
         e2->setSelected(true);
+        //for(Edge* e3 : e->getDest()->getAdj()){
+        //    if(e3->isSelected() && e3->getDest() == e->getOrig()){
+        //        cout<<"Ok\n";
+        //    }
+        //}
     }
 
     if(s == nullptr || t == nullptr || s == t)
