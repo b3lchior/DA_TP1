@@ -20,6 +20,8 @@ private:
     void printManagement();
 
     void printMaxTrainStation();
+
+    void printMaxNumTrainsWithMinCost();
 };
 
 

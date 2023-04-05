@@ -81,11 +81,15 @@ vector<FlowPerMunicOrDis> Manager::TopKMunicipesForWithMoreTraficPotencial(int k
     return graph_algorithms.TopKMunicipesForWithMoreTraficPotencial(k);
 }
 
-int Manager::MaxFlowWithMinCost(string s,string t){
+pair<int,int> Manager::MaxFlowWithMinCost(string s,string t){
     int price = INT16_MAX;
+    Vertex* v1=graph_algorithms.findVertex(s);
+    Vertex* v2=graph_algorithms.findVertex(t);
+    if( v1== nullptr or v2== nullptr){
+        return make_pair(-1,-1);
+    }
     int tmp = graph_algorithms.edmondsKarpWithDijska(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),price);
-    cout<<"Number of trains :"<<tmp<<"Price :"<<tmp*price;
-    return 1;
+    return make_pair(tmp,tmp*price);
 }
 // é assim que se usa as funções
 //vector<Edge> edges;

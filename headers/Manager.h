@@ -19,7 +19,7 @@ public:
     int find_max_number_of_trains_to_station(string stationID);
     vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
     vector<FlowPerMunicOrDis> TopKMunicipesForWithMoreTraficPotencial(int k);
-    int MaxFlowWithMinCost(string s,string t);
+    pair<int, int> MaxFlowWithMinCost(string s, string t);
     int MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges);
     vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges);
 };
