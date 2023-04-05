@@ -236,7 +236,7 @@ int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
 vector<string> GraphAlgorithms::getMunicipes(){
     vector<string> res;
     for(auto v : vertexSet){
-        if(find(res.begin(),res.end(),v->getMunicipality()) == res.end()){
+        if(find(res.begin(),res.end(),v->getMunicipality()) == res.end() && v->getMunicipality()!=""){
             res.push_back(v->getMunicipality());
         }
     }
@@ -245,7 +245,7 @@ vector<string> GraphAlgorithms::getMunicipes(){
 vector<string>  GraphAlgorithms::getDistrics(){
     vector<string> res;
     for(auto v : vertexSet){
-        if(find(res.begin(),res.end(),v->getDistric()) == res.end()){
+        if(find(res.begin(),res.end(),v->getDistric()) == res.end() && v->getDistric()!=""){
             res.push_back(v->getDistric());
         }
     }
@@ -270,17 +270,12 @@ vector<Vertex*>  GraphAlgorithms::findVertexsInDistricts(string district){
     return res;
 }
 
-struct FlowPerMunicOrDis {
-    string DistrOrMunic;
-    int numTrains;
-};
-
 bool cmpFlow(FlowPerMunicOrDis& a,
          FlowPerMunicOrDis& b)
 {
     return a.numTrains > b.numTrains;
 }
-vector<string> GraphAlgorithms::TopKMunicipesForWithMoreTraficPotencial(int k){
+vector<FlowPerMunicOrDis> GraphAlgorithms::TopKMunicipesForWithMoreTraficPotencial(int k){
     vector<FlowPerMunicOrDis> res;
     vector<string> municipes = getMunicipes();
     for(string municipe : municipes){
@@ -288,46 +283,65 @@ vector<string> GraphAlgorithms::TopKMunicipesForWithMoreTraficPotencial(int k){
         FlowPerMunicOrDis tmp;
         tmp.DistrOrMunic = municipe;
         tmp.numTrains=0;
-
+        vector<Edge*> blackList;
+        for(Vertex* v : stationsPerMunicipe){
+            for(Edge* e : v->getAdj()){
+                if(e->getDest()->getMunicipality()!= e->getOrig()->getMunicipality()){
+                    blackList.push_back(e);
+                }
+            }
+        }
         for(int i = 0 ; i <stationsPerMunicipe.size();i++){
             for(int j = i+1 ; j <stationsPerMunicipe.size();j++){
-                tmp.numTrains+= edmondsKarp(stationsPerMunicipe[i],stationsPerMunicipe[j]);
+                tmp.numTrains+= edmondsKarpReducedConnectivity(stationsPerMunicipe[i],stationsPerMunicipe[j],blackList);
             }
         }
         res.push_back(tmp);
     }
     sort(res.begin(),res.end(),cmpFlow);
-    vector<string> res_ret;
+    vector<FlowPerMunicOrDis> res_ret;
     for(int i = 0 ; i < k ; i++){
         if(i>=res.size()){
             break;
         }
-        res_ret.push_back(res[i].DistrOrMunic);
+
+        res_ret.push_back(res[i]);
     }
     return res_ret;
 }
-vector<string> GraphAlgorithms::TopKDistricsForWithMoreTraficPotencial(int k){
+vector<FlowPerMunicOrDis> GraphAlgorithms::TopKDistricsForWithMoreTraficPotencial(int k){
     vector<FlowPerMunicOrDis> res;
     vector<string> districts = getDistrics();
     for(string district : districts){
         vector<Vertex*> stationsPerDistrict = findVertexsInDistricts(district);
+
+        vector<Edge*> blackList;
+        for(Vertex* v : stationsPerDistrict){
+            for(Edge* e : v->getAdj()){
+                if(e->getDest()->getDistric()!= e->getOrig()->getDistric()){
+                    blackList.push_back(e);
+                }
+            }
+        }
+
+
         FlowPerMunicOrDis tmp;
         tmp.DistrOrMunic = district;
         tmp.numTrains=0;
         for(int i = 0 ; i <stationsPerDistrict.size();i++){
             for(int j = i+1 ; j <stationsPerDistrict.size();j++){
-                tmp.numTrains+= edmondsKarp(stationsPerDistrict[i],stationsPerDistrict[j]);
+                tmp.numTrains+= edmondsKarpReducedConnectivity(stationsPerDistrict[i],stationsPerDistrict[j],blackList);
             }
         }
         res.push_back(tmp);
     }
     sort(res.begin(),res.end(),cmpFlow);
-    vector<string> res_ret;
+    vector<FlowPerMunicOrDis> res_ret;
     for(int i = 0 ; i < k ; i++){
         if(i>=res.size()){
             break;
         }
-        res_ret.push_back(res[i].DistrOrMunic);
+        res_ret.push_back(res[i]);
     }
     return res_ret;
 }

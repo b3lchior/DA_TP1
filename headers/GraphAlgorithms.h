@@ -21,6 +21,12 @@ struct EdgeSearch{
     string station1;
     string station2;
 };
+
+struct FlowPerMunicOrDis {
+    string DistrOrMunic;
+    int numTrains;
+};
+
 class GraphAlgorithms: public Graph {
 public:
     /**
@@ -40,8 +46,8 @@ public:
  */
     vector<MaxTrainPair> find_max_flow();
     int find_max_number_of_trains_to_station(string stationID);
-    vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
-    vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
+    vector<FlowPerMunicOrDis> TopKMunicipesForWithMoreTraficPotencial(int k);
+    vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
     int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
     int edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<Edge*> edgesReduced);
     vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<EdgeSearch> unusedEdges);

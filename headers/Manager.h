@@ -17,8 +17,8 @@ public:
     void MaxFlow(string source, string target);
     void MaxFlowFromNetwork();
     int find_max_number_of_trains_to_station(string stationID);
-    vector<string> TopKDistricsForWithMoreTraficPotencial(int k);
-    vector<string> TopKMunicipesForWithMoreTraficPotencial(int k);
+    vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
+    vector<FlowPerMunicOrDis> TopKMunicipesForWithMoreTraficPotencial(int k);
     int MaxFlowWithMinCost(string s,string t);
     int MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges);
     vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges);
