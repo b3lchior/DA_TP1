@@ -14,8 +14,8 @@ public:
     void ReadStations();
     void ReadRoutes();
     GraphAlgorithms getGraph();
-    void MaxFlow(string source, string target);
-    void MaxFlowFromNetwork();
+    int MaxFlow(string source, string target);
+    vector<MaxTrainPair> MaxFlowFromNetwork();
     int find_max_number_of_trains_to_station(string stationID);
     vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
     vector<FlowPerMunicOrDis> TopKMunicipesForWithMoreTraficPotencial(int k);

@@ -55,17 +55,18 @@ void Manager::ReadRoutes(){
         graph_algorithms.addBidirectionalEdge(station_A,station_B, stoi(capacity),service);
     }
 }
-void Manager::MaxFlow(string source, string target){
+int Manager::MaxFlow(string source, string target){
     Vertex* s = graph_algorithms.findVertex(source);
     Vertex* t = graph_algorithms.findVertex(target);
-    cout << graph_algorithms.edmondsKarp(s,t);
+    if( s== nullptr or t== nullptr){
+        return -1;
+    }
+    return graph_algorithms.edmondsKarp(s,t);
 }
 
-void Manager::MaxFlowFromNetwork(){
+vector<MaxTrainPair> Manager::MaxFlowFromNetwork(){
     vector<MaxTrainPair> res = graph_algorithms.find_max_flow();
-    for(auto result : res){
-        cout<<"\n"<<result.station1->getId()<<"------"<<result.numTrains<<"-------------->"<<result.station2->getId()<<"\n";
-    }
+    return res;
 }
 
 int Manager::find_max_number_of_trains_to_station(string stationID){

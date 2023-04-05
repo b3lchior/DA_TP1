@@ -28,39 +28,46 @@ void GUI::start() {
 }
 
 bool GUI::printUserMenu() {
-    cout << "╒══════════════════════════════════════════════════╤═════════════════════════════════════════════╕\n"
-            "│              Flight Management                   │             Airports Information            │\n"
-            "╞══════════════════════════════════════════════════╪═════════════════════════════════════════════╡\n"
-            "│   Maximum number of trains that can simultaneously travel between two stations            [11] │\n"
-            "│                                                                                                │\n"
-            "│                                                                                                │\n"
-            "│                                                                                                │\n"
-            "╞══════════════════════════════════════════════════╡                                             │\n"
-            "│                Other operations                  │                                             │\n"
-            "╞══════════════════════════════════════════════════╡                                             │\n"
-            "│  Exit                                       [31] │                                             │\n"
-            "╘══════════════════════════════════════════════════╧═════════════════════════════════════════════╛\n"
-            "                                                                                             \n";
+    cout << "╒══════════════════════════════════════════════════╤═════════════════════════════════════════════════════════════╕\n"
+            "│              Stations Information                │                      Network information                    │\n"
+            "╞══════════════════════════════════════════════════╪═════════════════════════════════════════════════════════════╡\n"
+            "│                                                  │  -Maximum flow of trains between two stations.        [21]  │\n"
+            "│                                                  │  -Which stations require the most amount of           [22]  │\n"
+            "│                                                  │  trains to take full advantage of network capacity.         │\n"
+            "│                                                  │  -Where management should assign larger budgets for   [23]  │\n"
+            "│                                                  │  purchasing and maintenance of trains.                      │\n"
+            "│                                                  │                                                             │\n"
+            "╞══════════════════════════════════════════════════╡                                                             │\n"
+            "│                Other operations                  │                                                             │\n"
+            "╞══════════════════════════════════════════════════╡                                                             │\n"
+            "│  Exit                                       [31] │                                                             │\n"
+            "╘══════════════════════════════════════════════════╧═════════════════════════════════════════════════════════════╛\n"
+            "                                                                                                                  \n";
     string operation;
     cin >> operation;
     cin.ignore();
     try {
         switch (stoi(operation)) {
             case 11: {
-                printMaxNumTrains();
+
                 break;
             }
             case 12:
+
                 break;
             case 13:
                 break;
             case 21:
+                printMaxNumTrains();
                 break;
             case 22:
+                printMaxFlowNetwork();
                 break;
             case 23:
+                printManagement();
                 break;
             case 24:
+                printMaxTrainStation();
                 break;
             case 25:
                 break;
@@ -101,7 +108,7 @@ void GUI::printMaxNumTrains() {
     if(destination=="1"){
         return ;
     }
-    int num=manager.Karp(source,destination);
+    int num=manager.MaxFlow(source,destination);
     if(num==-1){
         cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
                 "│  Error invalid source or destination                                                  │\n"
@@ -119,3 +126,79 @@ void GUI::printMaxNumTrains() {
     }
     cin.ignore();
 }
+
+void GUI::printMaxFlowNetwork() {
+    vector<MaxTrainPair> res=manager.MaxFlowFromNetwork();
+    cout << "╒═══════════════════════════════════════════════════════════════════════════════╕\n";
+    for(auto result : res){
+        cout << "         "<<result.station1->getId()<<"------"<<result.numTrains<<"-------------->"<<result.station2->getId()<<endl<<
+                "╞═══════════════════════════════════════════════════════════════════════════════╡\n";
+    }
+    cout<< "│  Press enter to return                                                        │\n"
+           "╘═══════════════════════════════════════════════════════════════════════════════╛\n"
+           "                                                                                 \n";
+    cin.ignore();
+}
+
+void GUI::printManagement() {
+    int type,numberOf;
+    cout <<    "╒══════════════════════════════════════════════════════════╕\n"
+               "│     You want the result to be Districts or Munícipes     │\n"
+               "╞══════════════════════════════════════════════════════════╡\n"
+               "│  Munícipes                                          [2]  │\n"
+               "│  Districts                                          [1]  │\n"
+               "╞══════════════════════════════════════════════════════════╡\n"
+               "│  Return                                             [0]  │\n"
+               "╘══════════════════════════════════════════════════════════╛\n"
+               "                                               \n";
+    cin>>type;
+    if(type==0){
+        return ;
+    }
+    cout <<    "╒═════════════════════════════════════════════╕\n"
+               "│ This function will return the top k results │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Write the number of results you want       │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Return                                [0]  │\n"
+               "╘═════════════════════════════════════════════╛\n"
+               "                                               \n";
+    cin>>numberOf;
+    if(numberOf==0){
+        return ;
+    }
+    cin.ignore();
+    if(numberOf<0){
+        cout << "╒═════════════════════════════════════════════════════════════════════════╕\n"
+                "│  Error invalid number of results                                        │\n"
+                "╞═════════════════════════════════════════════════════════════════════════╡\n"
+                "│  Press enter to return                                                  │\n"
+                "╘═════════════════════════════════════════════════════════════════════════╛\n"
+                "                                                                                         \n";
+        cin.ignore();
+        return;
+    }
+    vector<FlowPerMunicOrDis> res;
+    if(type==1){
+        res=manager.TopKDistricsForWithMoreTraficPotencial(numberOf);
+    }else if(type==2){
+        res=manager.TopKMunicipesForWithMoreTraficPotencial(numberOf);
+    }
+    cout << "╒════════════════════════════════════════════════════════════════╕\n";
+    for(auto result : res){
+        cout << "         "<<result.DistrOrMunic<<"------"<<result.numTrains<<" trains"<<endl<<
+            "╞════════════════════════════════════════════════════════════════╡\n";
+    }
+    cout<< "│  Press enter to return                                         │\n"
+           "╘════════════════════════════════════════════════════════════════╛\n"
+           "                                                          \n";
+    cin.ignore();
+}
+
+void GUI::printMaxTrainStation() {
+
+}
+
+
+
+

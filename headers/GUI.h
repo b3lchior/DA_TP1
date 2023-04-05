@@ -13,8 +13,13 @@ public:
     void start();
     bool printUserMenu();
     void printMaxNumTrains();
+    void printMaxFlowNetwork();
 private:
     Manager manager;
+
+    void printManagement();
+
+    void printMaxTrainStation();
 };
 
 
