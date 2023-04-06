@@ -99,11 +99,24 @@ pair<int,int> Manager::MaxFlowWithMinCost(string s,string t){
 int Manager::MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges){
     vector<Edge*> edges;
     for(EdgeSearch e : unusableEdges){
-        edges.push_back(graph_algorithms.findEdge(e.station1 , e.station2));
+        Edge * edge=graph_algorithms.findEdge(e.station1 , e.station2);
+        if(edge== nullptr){
+            return -2;
+        }
+        edges.push_back(edge);
     }
     return graph_algorithms.edmondsKarpReducedConnectivity(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),edges);
 }
 
 vector<AfectedStation> Manager::TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges){
-    return graph_algorithms.TopKStationsThatAreAffectedByReducedConectivity(k,unusedEdges);
+    vector<Edge*> edges;
+    for(EdgeSearch& e : unusedEdges){
+        Edge * e1 = graph_algorithms.findEdge(e.station1,e.station2);
+        if(e1== nullptr){
+            return {{nullptr,-2,-2}};
+        }
+        edges.push_back(e1);
+        edges.push_back(e1->getReverse());
+    }
+    return graph_algorithms.TopKStationsThatAreAffectedByReducedConectivity(k,edges);
 }

@@ -425,11 +425,6 @@ int GraphAlgorithms::edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<
         e->setSelected(true);
         Edge* e2 = e->getReverse();
         e2->setSelected(true);
-        //for(Edge* e3 : e->getDest()->getAdj()){
-        //    if(e3->isSelected() && e3->getDest() == e->getOrig()){
-        //        cout<<"Ok\n";
-        //    }
-        //}
     }
 
     if(s == nullptr || t == nullptr || s == t)
@@ -485,7 +480,7 @@ bool cmpStation(AfectedStation& a,
     return a.numTrainsBefore-a.numTrainsAfter > b.numTrainsBefore - b.numTrainsAfter;
 }
 
-vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<EdgeSearch> unusableEdges){
+vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<Edge*> unusableEdges){
     vector<AfectedStation> res;
     vector<AfectedStation> resTmp;
 
@@ -495,24 +490,14 @@ vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedCone
         addBidirectionalEdge("DELETE",v->getId(),INT16_MAX,"delete");
     }
 
-
-
     for(int i = 0 ; i<vertexSet.size();i++){
         AfectedStation tmp;
         tmp.station = vertexSet[i];
         tmp.numTrainsBefore=find_max_number_of_trains_to_stationAux(vertexSet[i]->getId());
         resTmp.push_back(tmp);
     }
-    vector<Edge*> edges;
-    for(EdgeSearch& e : unusableEdges){
-        Edge * e1 = findEdge(e.station1,e.station2);
-        edges.push_back(e1);
-        edges.push_back(e1->getReverse());
-        //cout<<e1->getOrig()->getId()<<"    "<<e1->getDest()->getId()<<"\n";
-    }
     for(int i = 0 ; i<vertexSet.size();i++){
-        resTmp[i].numTrainsAfter=find_max_number_of_trains_to_station_with_congested_network(vertexSet[i]->getId(),edges);
-        //cout<<resTmp[i].numTrainsBefore<<"     "<<resTmp[i].numTrainsAfter<<"\n";
+        resTmp[i].numTrainsAfter=find_max_number_of_trains_to_station_with_congested_network(vertexSet[i]->getId(),unusableEdges);
     }
     removeVertex("DELETE");
     sort(resTmp.begin(),resTmp.end(), cmpStation);

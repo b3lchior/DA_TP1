@@ -8,18 +8,6 @@
 void GUI::start() {
     manager.read_files();
     Graph graph = manager.getGraph();
-    //test read and write
-    /*
-    for(Vertex* vertex : graph.getVertexSet()){
-        cout<<vertex->getId()<<endl;
-
-        for(Edge* edge : vertex->getAdj()){
-            cout<<edge->getOrig()->getId()<<"--->"<<edge->getDest()->getId()<<"   by"<<edge->getWeight()<<"   "<<edge->getService()<<endl;
-        }
-        cout<<"---------------------------------\n";
-    }*/
-    //manager.Karp("Lisboa Rossio","Porto Campanhã");
-    //manager.Karp("Porto Campanhã","Lisboa Oriente");
     while (true) {
         if(!printUserMenu()){
             break;
@@ -29,18 +17,18 @@ void GUI::start() {
 
 bool GUI::printUserMenu() {
     cout << "╒══════════════════════════════════════╤═══════════════════════════════════════════════════════════════════════════════╕\n"
-            "│          Stations Information        │                               Network information                             │\n"
+            "│          Network Information         │                               Service Metrics                                 │\n"
             "╞══════════════════════════════════════╪═══════════════════════════════════════════════════════════════════════════════╡\n"
-            "│                                      │  -Maximum flow of trains between two stations.                          [21]  │\n"
+            "│  List of Munícipes.            [11]  │  -Maximum flow of trains between two stations.                          [21]  │\n"
             "│                                      │  -Which stations require the most amount of trains to take full         [22]  │\n"
-            "│                                      │   advantage of network capacity.                                              │\n"
+            "│  List of Districts.            [12]  │   advantage of network capacity.                                              │\n"
             "│                                      │  -Where management should assign larger budgets for purchasing and      [23]  │\n"
-            "│                                      │   maintenance of trains.                                                      │\n"
-            "│                                      │  -Maximum number of trains that can simultaneously arrive at            [24]  │\n"
-            "│                                      │   a given station.                                                            │\n"
-            "│                                      │  -Calculate the maximum amount of trains that can simultaneously        [25]  │\n"
+            "│  List of Stations of a given   [13]  │   maintenance of trains.                                                      │\n"
+            "│  Munícipe or District                │  -Maximum number of trains that can simultaneously arrive at            [24]  │\n"
+            "│  List of Destinations of a     [14]  │   a given station.                                                            │\n"
+            "│  given station.                      │  -Calculate the maximum amount of trains that can simultaneously        [25]  │\n"
             "│                                      │   travel between two specific stations with minimum cost for the company.     │\n"
-            "│                                      │  -Calculate the maximum number of trains that can simultaneously        [26]  │\n"
+            "│  List of Stations.             [15]  │  -Calculate the maximum number of trains that can simultaneously        [26]  │\n"
             "╞══════════════════════════════════════╡   travel between two specific stations in a network of reduced connectivity.  │\n"
             "│            Other operations          │  -Report of the stations that will be most affected from a segment      [27]  │\n"
             "╞══════════════════════════════════════╡   failure.                                                                    │\n"
@@ -52,14 +40,20 @@ bool GUI::printUserMenu() {
     cin.ignore();
     try {
         switch (stoi(operation)) {
-            case 11: {
-
+            case 11:
+                printListOfMunicipes();
                 break;
-            }
             case 12:
-
+                printListOfDistricts();
                 break;
             case 13:
+                printListOfStationsOfMandD();
+                break;
+            case 14:
+                printListOfEdges();
+                break;
+            case 15:
+                printListOfStations();
                 break;
             case 21:
                 printMaxNumTrains();
@@ -79,6 +73,9 @@ bool GUI::printUserMenu() {
             case 26:
                 printMaxTrainsWithRedCon();
                 break;
+            case 27:
+                printMostAffectedStationsRedCon();
+                break;
             case 31:
                 return false;
             default:
@@ -91,32 +88,11 @@ bool GUI::printUserMenu() {
 }
 
 void GUI::printMaxNumTrains() {
-    string source,destination;
-    cout <<    "╒═════════════════════════════════════════════╕\n"
-               "│                   Source                    │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Write the source station name              │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Return                                [1]  │\n"
-               "╘═════════════════════════════════════════════╛\n"
-               "                                               \n";
-    getline(cin, source);
-    if(source=="1"){
-        return ;
+    pair<string,string> p=printSourceAndDest();
+    if(p.first=="1"){
+        return;
     }
-    cout <<    "╒═════════════════════════════════════════════╕\n"
-               "│                 Destination                 │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Write the target airport code              │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Return                                [1]  │\n"
-               "╘═════════════════════════════════════════════╛\n"
-               "                                               \n";
-    getline(cin, destination);
-    if(destination=="1"){
-        return ;
-    }
-    int num=manager.MaxFlow(source,destination);
+    int num=manager.MaxFlow(p.first,p.second);
     if(num==-1){
         cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
                 "│  Error invalid source or destination                                                  │\n"
@@ -126,7 +102,7 @@ void GUI::printMaxNumTrains() {
              "                                                                                         \n";
     }else{
         cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
-             << "   "<< num << " trains can simultaneously travel between " << source << " and " << destination << endl <<
+             << "   "<< num << " trains can simultaneously travel between " << p.first << " and " << p.second << endl <<
              "╞═══════════════════════════════════════════════════════════════════════════════════════╡\n"
              "│  Press enter to return                                                                │\n"
              "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n"
@@ -236,32 +212,11 @@ void GUI::printMaxTrainStation() {
 }
 
 void GUI::printMaxNumTrainsWithMinCost() {
-    string source,destination;
-    cout <<    "╒═════════════════════════════════════════════╕\n"
-               "│                   Source                    │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Write the source station name              │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Return                                [1]  │\n"
-               "╘═════════════════════════════════════════════╛\n"
-               "                                               \n";
-    getline(cin, source);
-    if(source=="1"){
-        return ;
+    pair<string,string> p=printSourceAndDest();
+    if(p.first=="1"){
+        return;
     }
-    cout <<    "╒═════════════════════════════════════════════╕\n"
-               "│                 Destination                 │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Write the target airport code              │\n"
-               "╞═════════════════════════════════════════════╡\n"
-               "│  Return                                [1]  │\n"
-               "╘═════════════════════════════════════════════╛\n"
-               "                                               \n";
-    getline(cin, destination);
-    if(destination=="1"){
-        return ;
-    }
-    pair<int,int> res=manager.MaxFlowWithMinCost(source,destination);
+    pair<int,int> res=manager.MaxFlowWithMinCost(p.first,p.second);
     if(res.first==-1){
         cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
                 "│  Error invalid station                                                                │\n"
@@ -281,24 +236,287 @@ void GUI::printMaxNumTrainsWithMinCost() {
 }
 
 void GUI::printMaxTrainsWithRedCon() {
-
+    vector<EdgeSearch> edges=printEdgesGathering();
+    pair<string,string> p=printSourceAndDest();
+    if(p.first=="1"){
+        return;
+    }
+    int res=manager.MaxFlowWithWithReducedConectivity(p.first,p.second,edges);
+    if(res==-1){
+        cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
+                "│  Error invalid source or destination                                                  │\n"
+                "╞═══════════════════════════════════════════════════════════════════════════════════════╡\n"
+                "│  Press enter to return                                                                │\n"
+                "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n"
+                "                                                                                         \n";
+    }else if(res==-2){
+        cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
+                "│  Error one or more invalid edges                                                      │\n"
+                "╞═══════════════════════════════════════════════════════════════════════════════════════╡\n"
+                "│  Press enter to return                                                                │\n"
+                "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n"
+                "                                                                                         \n";
+    }else{
+        cout << "╒═══════════════════════════════════════════════════════════════════════════════════════════════════════╕\n"
+             << " With the reduced connectivity applied "<< res << " trains can simultaneously travel between " << p.first << " and " << p.second << endl <<
+             "╞═══════════════════════════════════════════════════════════════════════════════════════════════════════╡\n"
+             "│  Press enter to return                                                                                │\n"
+             "╘═══════════════════════════════════════════════════════════════════════════════════════════════════════╛\n"
+             "                                                                                         \n";
+    }
+    cin.ignore();
 }
 
-vector<Edge> GUI::printEdgesGathering(){
-    string edge;
-    cout <<    "╒═══════════════════════════════════════════════════════════╕\n"
-               "│   Add an edge to the ones you dont want the graph to use  │\n"
-               "╞═══════════════════════════════════════════════════════════╡\n"
-               "│  Write the source station name                            │\n"
-               "╞═══════════════════════════════════════════════════════════╡\n"
-               "│  Return                                              [1]  │\n"
-               "╘═══════════════════════════════════════════════════════════╛\n"
+void GUI::printMostAffectedStationsRedCon() {
+    vector<EdgeSearch> edges=printEdgesGathering();
+    if(edges.empty()){
+        return;
+    }
+    int numberOf;
+    cout <<    "╒═════════════════════════════════════════════╕\n"
+               "│ This function will return the top k results │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Write the number of results you want       │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Return                                [0]  │\n"
+               "╘═════════════════════════════════════════════╛\n"
+               "                                               \n";
+    cin>>numberOf;
+    if(numberOf==0){
+        return ;
+    }
+    cin.ignore();
+    vector<AfectedStation> v=manager.TopKStationsThatAreAffectedByReducedConectivity(numberOf,edges);
+    if(v[0].numTrainsAfter==-2){
+        cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
+                "│  Error one or more invalid edges                                                      │\n"
+                "╞═══════════════════════════════════════════════════════════════════════════════════════╡\n"
+                "│  Press enter to return                                                                │\n"
+                "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n"
+                "                                                                                         \n";
+        cin.ignore();
+        return;
+    }
+    cout << "╒════════════════════════════════════════════════════════════════╕\n"
+            "│  Most affected stations                                        │\n"
+            "╞════════════════════════════════════════════════════════════════╡\n";
+    for(auto a : v){
+        cout << "   "<<a.station->getId()<<"- trains before: "<<a.numTrainsBefore<<" trains after: "<<a.numTrainsAfter<<endl<<
+            "╞════════════════════════════════════════════════════════════════╡\n";
+    }
+    cout<< "│  Press enter to return                                         │\n"
+           "╘════════════════════════════════════════════════════════════════╛\n"
+           "                                                          \n";
+    cin.ignore();
+}
+
+vector<EdgeSearch> GUI::printEdgesGathering(){
+    string source,destination;
+    vector<EdgeSearch> edges;
+    while(true) {
+        cout << "╒═══════════════════════════════════════════════════════════╕\n"
+                "│   Add an edge to the ones you dont want the graph to use  │\n"
+                "╞═══════════════════════════════════════════════════════════╡\n"
+                "│  Write the source station name                            │\n"
+                "╞═══════════════════════════════════════════════════════════╡\n"
+                "│  Return                                              [1]  │\n"
+                "╘═══════════════════════════════════════════════════════════╛\n"
+                "                                               \n";
+        getline(cin, source);
+        if (source == "1") {
+            return {};
+        }
+        cout << "╒═══════════════════════════════════════════════════════════╕\n"
+                "│   Add an edge to the ones you dont want the graph to use  │\n"
+                "╞═══════════════════════════════════════════════════════════╡\n"
+                "│  Write the destination station name                       │\n"
+                "╞═══════════════════════════════════════════════════════════╡\n"
+                "│  Return                                              [1]  │\n"
+                "╘═══════════════════════════════════════════════════════════╛\n"
+                "                                               \n";
+        getline(cin, destination);
+        if (source == "1") {
+            return {};
+        }
+        edges.push_back({source,destination});
+        cout << "╒════════════════════════════════════════╕\n"
+                "│  Add one more edge?                    │\n"
+                "╞════════════════════════════════════════╡\n"
+                "│  Yes                              [2]  │\n"
+                "╞════════════════════════════════════════╡\n"
+                "│  No                               [1]  │\n"
+                "╘════════════════════════════════════════╛\n"
+                "                                               \n";
+        int a;
+        cin >> a;
+        cin.ignore();
+        if(a==1){
+            break;
+        }
+    }
+    return edges;
+}
+
+pair<string,string> GUI::printSourceAndDest(){
+    string source,destination;
+    cout <<    "╒═════════════════════════════════════════════╕\n"
+               "│                   Source                    │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Write the source station name              │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Return                                [1]  │\n"
+               "╘═════════════════════════════════════════════╛\n"
                "                                               \n";
     getline(cin, source);
     if(source=="1"){
+        return {"1","1"};
+    }
+    cout <<    "╒═════════════════════════════════════════════╕\n"
+               "│                 Destination                 │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Write the target airport code              │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Return                                [1]  │\n"
+               "╘═════════════════════════════════════════════╛\n"
+               "                                               \n";
+    getline(cin, destination);
+    if(destination=="1"){
+        return {"1","1"};
+    }
+    return {source,destination};
+}
+
+void GUI::printListOfMunicipes() {
+    vector<string> v=manager.getGraph().getMunicipes();
+    cout << "╒════════════════════════════════════════════╕\n"
+            "│                 Munícipes                  │\n"
+            "╞════════════════════════════════════════════╡\n";
+    for(auto a : v){
+        cout << "   "<<a<<endl<<
+            "╞════════════════════════════════════════════╡\n";
+    }
+    cout<<  "│  Press enter to return                     │\n"
+            "╘════════════════════════════════════════════╛\n"
+           "                                                          \n";
+    cin.ignore();
+}
+
+void GUI::printListOfDistricts() {
+    vector<string> v=manager.getGraph().getDistrics();
+    cout << "╒════════════════════════════════════════════╕\n"
+            "│                 Districts                  │\n"
+            "╞════════════════════════════════════════════╡\n";
+    for(auto a : v){
+        cout << "   "<<a<<endl<<
+             "╞════════════════════════════════════════════╡\n";
+    }
+    cout<<  "│  Press enter to return                     │\n"
+            "╘════════════════════════════════════════════╛\n"
+            "                                                          \n";
+    cin.ignore();
+}
+
+void GUI::printListOfStationsOfMandD() {
+    int type;
+    string name;
+    cout <<    "╒══════════════════════════════════════════════════════════╕\n"
+               "│      You want the station of a District or Munícipe      │\n"
+               "╞══════════════════════════════════════════════════════════╡\n"
+               "│  Munícipe                                           [2]  │\n"
+               "│  District                                           [1]  │\n"
+               "╞══════════════════════════════════════════════════════════╡\n"
+               "│  Return                                             [0]  │\n"
+               "╘══════════════════════════════════════════════════════════╛\n"
+               "                                               \n";
+    cin>>type;
+    if(type==0){
         return ;
     }
+    cin.ignore();
+    vector<Vertex*> v;
+    if(type==1){
+        cout <<    "╒═════════════════════════════════════════════╕\n"
+                   "│                  District                   │\n"
+                   "╞═════════════════════════════════════════════╡\n"
+                   "│  Write the district name                    │\n"
+                   "╞═════════════════════════════════════════════╡\n"
+                   "│  Return                                [1]  │\n"
+                   "╘═════════════════════════════════════════════╛\n"
+                   "                                               \n";
+        getline(cin,name);
+        v=manager.getGraph().findVertexsInDistricts(name);
+    }else if(type==2){
+        cout <<    "╒═════════════════════════════════════════════╕\n"
+                   "│                  Munícipe                   │\n"
+                   "╞═════════════════════════════════════════════╡\n"
+                   "│  Write the munícipe name                    │\n"
+                   "╞═════════════════════════════════════════════╡\n"
+                   "│  Return                                [1]  │\n"
+                   "╘═════════════════════════════════════════════╛\n"
+                   "                                               \n";
+        getline(cin,name);
+        v=manager.getGraph().findVertexsInMunicipe(name);
+    }else{
+        cout << "Error select one of the valid options!";
+        printListOfStationsOfMandD();
+        return;
+    }
+    cout << "╒════════════════════════════════════════════╕\n"
+            "            Stations - "<< name<< endl<<
+            "╞════════════════════════════════════════════╡\n";
+    for(auto a : v){
+        cout << "   "<<a->getId()<<endl<<
+             "╞════════════════════════════════════════════╡\n";
+    }
+    cout<<  "│  Press enter to return                     │\n"
+            "╘════════════════════════════════════════════╛\n"
+            "                                                          \n";
+    cin.ignore();
 }
+
+void GUI::printListOfStations() {
+    vector<Vertex*> v=manager.getGraph().getVertexSet();
+    cout << "╒════════════════════════════════════════════╕\n"
+            "│                  Stations                  │\n"
+            "╞════════════════════════════════════════════╡\n";
+    for(auto a : v){
+        cout << "   "<<a->getId()<<endl<<
+             "╞════════════════════════════════════════════╡\n";
+    }
+    cout<<  "│  Press enter to return                     │\n"
+            "╘════════════════════════════════════════════╛\n"
+            "                                                          \n";
+    cin.ignore();
+}
+
+void GUI::printListOfEdges() {
+    string station;
+    cout <<    "╒═════════════════════════════════════════════╕\n"
+               "│                   Station                   │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Write the station code                     │\n"
+               "╞═════════════════════════════════════════════╡\n"
+               "│  Return                                [1]  │\n"
+               "╘═════════════════════════════════════════════╛\n"
+               "                                               \n";
+    getline(cin, station);
+    if(station=="1"){
+        return;
+    }
+    vector<Edge *> v=manager.getGraph().findVertex(station)->getAdj();
+    cout << "╒════════════════════════════════════════════╕\n"
+            "         Destinations - "<< station <<endl<<
+            "╞════════════════════════════════════════════╡\n";
+    for(auto e : v){
+        cout << "   "<<station<<" ---> "<<e->getDest()->getId()<<endl<<
+        "╞════════════════════════════════════════════╡\n";
+    }
+    cout<<  "│  Press enter to return                     │\n"
+            "╘════════════════════════════════════════════╛\n"
+            "                                                          \n";
+    cin.ignore();
+}
+
 
 
 

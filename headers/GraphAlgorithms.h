@@ -50,7 +50,7 @@ public:
     vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
     int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
     int edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<Edge*> edgesReduced);
-    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<EdgeSearch> unusedEdges);
+    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<Edge*> unusedEdges);
     vector<string> getMunicipes();
     vector<string> getDistrics();
     vector<Vertex*> findVertexsInMunicipe(string municipe);

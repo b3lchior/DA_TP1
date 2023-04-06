@@ -7,7 +7,6 @@
 #include "Graph.h"
 #include "GraphAlgorithms.h"
 class Manager {
-private:
     GraphAlgorithms graph_algorithms;
 public:
     void read_files();

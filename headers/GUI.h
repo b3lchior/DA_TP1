@@ -14,18 +14,25 @@ public:
     bool printUserMenu();
     void printMaxNumTrains();
     void printMaxFlowNetwork();
+    void printManagement();
+    void printMaxTrainStation();
+    void printMaxNumTrainsWithMinCost();
+    void printMaxTrainsWithRedCon();
+    void printMostAffectedStationsRedCon();
+    vector<EdgeSearch> printEdgesGathering();
+    pair<string, string> printSourceAndDest();
 private:
     Manager manager;
 
-    void printManagement();
+    void printListOfMunicipes();
 
-    void printMaxTrainStation();
+    void printListOfDistricts();
 
-    void printMaxNumTrainsWithMinCost();
+    void printListOfStations();
 
-    void printMaxTrainsWithRedCon();
+    void printListOfEdges();
 
-    vector<Edge> printEdgesGathering();
+    void printListOfStationsOfMandD();
 };
 
 
