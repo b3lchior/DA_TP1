@@ -22,6 +22,10 @@ private:
     void printMaxTrainStation();
 
     void printMaxNumTrainsWithMinCost();
+
+    void printMaxTrainsWithRedCon();
+
+    vector<Edge> printEdgesGathering();
 };
 
 

@@ -71,7 +71,6 @@ protected:
     void testAndVisitReducedConnectivity(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);
     bool findArgumentingPathReducedConnectivity(Vertex* s,Vertex* t);
 
-
 };
 
 

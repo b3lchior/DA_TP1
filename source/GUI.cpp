@@ -40,9 +40,10 @@ bool GUI::printUserMenu() {
             "│                                      │   a given station.                                                            │\n"
             "│                                      │  -Calculate the maximum amount of trains that can simultaneously        [25]  │\n"
             "│                                      │   travel between two specific stations with minimum cost for the company.     │\n"
-            "╞══════════════════════════════════════╡                                                                               │\n"
-            "│            Other operations          │                                                                               │\n"
-            "╞══════════════════════════════════════╡                                                                               │\n"
+            "│                                      │  -Calculate the maximum number of trains that can simultaneously        [26]  │\n"
+            "╞══════════════════════════════════════╡   travel between two specific stations in a network of reduced connectivity.  │\n"
+            "│            Other operations          │  -Report of the stations that will be most affected from a segment      [27]  │\n"
+            "╞══════════════════════════════════════╡   failure.                                                                    │\n"
             "│  Exit                           [31] │                                                                               │\n"
             "╘══════════════════════════════════════╧═══════════════════════════════════════════════════════════════════════════════╛\n"
             "                                                                                                                  \n";
@@ -74,6 +75,9 @@ bool GUI::printUserMenu() {
                 break;
             case 25:
                 printMaxNumTrainsWithMinCost();
+                break;
+            case 26:
+                printMaxTrainsWithRedCon();
                 break;
             case 31:
                 return false;
@@ -276,6 +280,25 @@ void GUI::printMaxNumTrainsWithMinCost() {
     cin.ignore();
 }
 
+void GUI::printMaxTrainsWithRedCon() {
+
+}
+
+vector<Edge> GUI::printEdgesGathering(){
+    string edge;
+    cout <<    "╒═══════════════════════════════════════════════════════════╕\n"
+               "│   Add an edge to the ones you dont want the graph to use  │\n"
+               "╞═══════════════════════════════════════════════════════════╡\n"
+               "│  Write the source station name                            │\n"
+               "╞═══════════════════════════════════════════════════════════╡\n"
+               "│  Return                                              [1]  │\n"
+               "╘═══════════════════════════════════════════════════════════╛\n"
+               "                                               \n";
+    getline(cin, source);
+    if(source=="1"){
+        return ;
+    }
+}
 
 
 
