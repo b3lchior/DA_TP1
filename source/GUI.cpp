@@ -232,7 +232,7 @@ void GUI::printMaxNumTrainsWithMinCost() {
                 "                                                                                         \n";
     }else{
         cout << "╒═══════════════════════════════════════════════════════════════════════╕\n"
-             << "   "<< res.first << " trains with a minimum cost of " << res.second << endl <<
+             << "   "<< res.first << " trains with a minimum cost of " << res.second << "$ ("<<res.second/res.first<<"$ per train)"  <<endl <<
                 "╞═══════════════════════════════════════════════════════════════════════╡\n"
                 "│  Press enter to return                                                │\n"
                 "╘═══════════════════════════════════════════════════════════════════════╛\n"
