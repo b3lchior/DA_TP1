@@ -5,6 +5,8 @@
 #include "../headers/GUI.h"
 #include "../headers/Manager.h"
 #include <iomanip>
+#include <unistd.h>
+
 void GUI::start() {
     manager.read_files();
     Graph graph = manager.getGraph();
@@ -20,7 +22,7 @@ bool GUI::printUserMenu() {
             "│          Network Information         │                               Service Metrics                                 │\n"
             "╞══════════════════════════════════════╪═══════════════════════════════════════════════════════════════════════════════╡\n"
             "│  List of Munícipes.            [11]  │  -Maximum flow of trains between two stations.                          [21]  │\n"
-            "│                                      │  -Which stations require the most amount of trains to take full         [22]  │\n"
+            "│                                      │  -Which pair of stations require the most amount of trains to take full [22]  │\n"
             "│  List of Districts.            [12]  │   advantage of network capacity.                                              │\n"
             "│                                      │  -Where management should assign larger budgets for purchasing and      [23]  │\n"
             "│  List of Stations of a given   [13]  │   maintenance of trains.                                                      │\n"
@@ -115,7 +117,10 @@ void GUI::printMaxFlowNetwork() {
     vector<MaxTrainPair> res=manager.MaxFlowFromNetwork();
     cout << "╒═══════════════════════════════════════════════════════════════════════════════╕\n";
     for(auto result : res){
-        cout << "         "<<result.station1->getId()<<"------"<<result.numTrains<<"-------------->"<<result.station2->getId()<<endl<<
+        cout <<" With a maximum of "<<setw(3)<<result.numTrains<<" trains between :"<<endl<<
+         " Station:"<<result.station1->getId()<<endl
+         <<" Station:"<<result.station2->getId()<<endl<<
+
                 "╞═══════════════════════════════════════════════════════════════════════════════╡\n";
     }
     cout<< "│  Press enter to return                                                        │\n"
@@ -298,15 +303,23 @@ void GUI::printMostAffectedStationsRedCon() {
         cin.ignore();
         return;
     }
-    cout << "╒════════════════════════════════════════════════════════════════╕\n"
-            "│  Most affected stations                                        │\n"
-            "╞════════════════════════════════════════════════════════════════╡\n";
+    cout << "╒════════════════════════════════════════════════════════════════════════╕\n"
+            "│  Most affected stations                                                │\n"
+            "╞════════════════════════════════════════════════════════════════════════╡\n";
     for(auto a : v){
-        cout << "   "<<a.station->getId()<<"- trains before: "<<a.numTrainsBefore<<" trains after: "<<a.numTrainsAfter<<endl<<
-            "╞════════════════════════════════════════════════════════════════╡\n";
+        int percentage;
+        if(a.numTrainsBefore != 0){
+            percentage = 100 - (a.numTrainsAfter*100)/a.numTrainsBefore;
+        }else{
+            percentage = 0;
+        }
+
+        cout << " Station :"<<left<<setw(40)<<setfill(' ')<<a.station->getId()<<endl
+        <<" a loss in max flow of trains of :"<<setw(2)<<percentage<<"%"<<" With a diference of :"<<setw(3)<<a.numTrainsBefore - a.numTrainsAfter<<" trains."<<endl<<
+           "╞═════════════════════════════════════════════════════════════════════╡\n";
     }
-    cout<< "│  Press enter to return                                         │\n"
-           "╘════════════════════════════════════════════════════════════════╛\n"
+    cout<< "│  Press enter to return                                              │\n"
+           "╘═════════════════════════════════════════════════════════════════════╛\n"
            "                                                          \n";
     cin.ignore();
 }
@@ -315,31 +328,57 @@ vector<EdgeSearch> GUI::printEdgesGathering(){
     string source,destination;
     vector<EdgeSearch> edges;
     while(true) {
-        cout << "╒═══════════════════════════════════════════════════════════╕\n"
-                "│   Add an edge to the ones you dont want the graph to use  │\n"
-                "╞═══════════════════════════════════════════════════════════╡\n"
-                "│  Write the source station name                            │\n"
-                "╞═══════════════════════════════════════════════════════════╡\n"
-                "│  Return                                              [1]  │\n"
-                "╘═══════════════════════════════════════════════════════════╛\n"
-                "                                               \n";
-        getline(cin, source);
-        if (source == "1") {
-            return {};
+        GraphAlgorithms graphAlgorithms = manager.getGraph();
+        while (true){
+            cout << "╒═══════════════════════════════════════════════════════════╕\n"
+                    "│   Add an edge to the ones you dont want the graph to use  │\n"
+                    "╞═══════════════════════════════════════════════════════════╡\n"
+                    "│  Write the source station name                            │\n"
+                    "╞═══════════════════════════════════════════════════════════╡\n"
+                    "│  Return                                              [1]  │\n"
+                    "╘═══════════════════════════════════════════════════════════╛\n"
+                    "                                               \n";
+            getline(cin, source);
+            if (source == "1") {
+                return {};
+            }
+            if(graphAlgorithms.findVertex(source)!= nullptr){
+                break;
+            }else{
+                cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
+                        "│  Error Station not found type again                                                   │\n"
+                        "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n";
+            }
+        } ;
+        while (true){
+            cout << "╒═══════════════════════════════════════════════════════════╕\n"
+                    "│   Add an edge to the ones you dont want the graph to use  │\n"
+                    "╞═══════════════════════════════════════════════════════════╡\n"
+                    "│  Write the destination station name                       │\n"
+                    "╞═══════════════════════════════════════════════════════════╡\n"
+                    "│  Return                                              [1]  │\n"
+                    "╘═══════════════════════════════════════════════════════════╛\n"
+                    "                                               \n";
+            getline(cin, destination);
+            if (destination == "1") {
+                return {};
+            }
+            if(graphAlgorithms.findVertex(destination)!= nullptr){
+                break;
+            }else{
+                cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
+                        "│  Error Station not found type again                                                   │\n"
+                        "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n";
+            }
         }
-        cout << "╒═══════════════════════════════════════════════════════════╕\n"
-                "│   Add an edge to the ones you dont want the graph to use  │\n"
-                "╞═══════════════════════════════════════════════════════════╡\n"
-                "│  Write the destination station name                       │\n"
-                "╞═══════════════════════════════════════════════════════════╡\n"
-                "│  Return                                              [1]  │\n"
-                "╘═══════════════════════════════════════════════════════════╛\n"
-                "                                               \n";
-        getline(cin, destination);
-        if (source == "1") {
-            return {};
+        if(graphAlgorithms.findEdge(source,destination)!= nullptr){
+            edges.push_back({source,destination});
+        }else{
+            cout << "╒═══════════════════════════════════════════════════════════════════════════════════════╕\n"
+                    "│  Error Line not found type again                                                      │\n"
+                    "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n";
+            continue;
         }
-        edges.push_back({source,destination});
         cout << "╒════════════════════════════════════════╕\n"
                 "│  Add one more edge?                    │\n"
                 "╞════════════════════════════════════════╡\n"

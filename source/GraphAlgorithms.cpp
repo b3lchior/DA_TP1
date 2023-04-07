@@ -477,6 +477,21 @@ int GraphAlgorithms::find_max_number_of_trains_to_station_with_congested_network
 bool cmpStation(AfectedStation& a,
          AfectedStation& b)
 {
+    if(a.numTrainsBefore-a.numTrainsAfter == b.numTrainsBefore - b.numTrainsAfter){
+        int percentage;
+        if(a.numTrainsBefore != 0){
+            percentage = 100 - (a.numTrainsAfter*100)/a.numTrainsBefore;
+        }else{
+            percentage = 0;
+        }
+        int percentage1;
+        if(b.numTrainsBefore != 0){
+            percentage1 = 100 - (b.numTrainsAfter*100)/b.numTrainsBefore;
+        }else{
+            percentage1 = 0;
+        }
+        return percentage>percentage1;
+    }
     return a.numTrainsBefore-a.numTrainsAfter > b.numTrainsBefore - b.numTrainsAfter;
 }
 
