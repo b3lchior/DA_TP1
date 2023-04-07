@@ -4,7 +4,7 @@
 
 #include "../headers/GUI.h"
 #include "../headers/Manager.h"
-
+#include <iomanip>
 void GUI::start() {
     manager.read_files();
     Graph graph = manager.getGraph();
@@ -170,7 +170,7 @@ void GUI::printManagement() {
     }
     cout << "╒════════════════════════════════════════════════════════════════╕\n";
     for(auto result : res){
-        cout << "         "<<result.DistrOrMunic<<"------"<<result.numTrains<<" trains"<<endl<<
+        cout <<" "<<setw(40)<<left<<result.DistrOrMunic<<left<<to_string(result.numTrains)+" trains" <<"\n"<<
             "╞════════════════════════════════════════════════════════════════╡\n";
     }
     cout<< "│  Press enter to return                                         │\n"
@@ -208,6 +208,7 @@ void GUI::printMaxTrainStation() {
              "│  Press enter to return                                                                │\n"
              "╘═══════════════════════════════════════════════════════════════════════════════════════╛\n"
              "                                                                                         \n";
+        cin.ignore();
     }
 }
 
@@ -374,7 +375,7 @@ pair<string,string> GUI::printSourceAndDest(){
     cout <<    "╒═════════════════════════════════════════════╕\n"
                "│                 Destination                 │\n"
                "╞═════════════════════════════════════════════╡\n"
-               "│  Write the target airport code              │\n"
+               "│  Write the destination station name         │\n"
                "╞═════════════════════════════════════════════╡\n"
                "│  Return                                [1]  │\n"
                "╘═════════════════════════════════════════════╛\n"
