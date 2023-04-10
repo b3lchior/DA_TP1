@@ -106,7 +106,7 @@ public:
  * @param unusableEdges A vector containing EdgeSearch objects that represent the edges to be removed from the graph.
  * @return A vector of AfectedStation objects, sorted by the magnitude of the difference between the number of trains that can reach the station before and after removing the edges.
  */
-    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<EdgeSearch> unusedEdges);
+    vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<Edge*> unusedEdges);
 
     /**
     * @brief returns a vector with the names of all the municipalities present in the graph.

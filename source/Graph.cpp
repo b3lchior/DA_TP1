@@ -92,11 +92,15 @@ Edge* Graph::findEdge(Edge e1){
 
 Edge* Graph::findEdge(string orig , string dest){
     Vertex* v = findVertex(orig);
+    if(v== nullptr){
+        return nullptr;
+    }
     for(Edge* e : v->getAdj()){
         if(e->getDest()->getId() == dest ){
             return e;
         }
     }
+    return nullptr;
 }
 
 bool Graph::addBidirectionalEdge(const string &sourc, const string &dest, double w , string service) {

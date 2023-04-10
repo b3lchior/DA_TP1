@@ -55,17 +55,18 @@ void Manager::ReadRoutes(){
         graph_algorithms.addBidirectionalEdge(station_A,station_B, stoi(capacity),service);
     }
 }
-void Manager::MaxFlow(string source, string target){
+int Manager::MaxFlow(string source, string target){
     Vertex* s = graph_algorithms.findVertex(source);
     Vertex* t = graph_algorithms.findVertex(target);
-    cout << graph_algorithms.edmondsKarp(s,t);
+    if( s== nullptr or t== nullptr){
+        return -1;
+    }
+    return graph_algorithms.edmondsKarp(s,t);
 }
 
-void Manager::MaxFlowFromNetwork(){
+vector<MaxTrainPair> Manager::MaxFlowFromNetwork(){
     vector<MaxTrainPair> res = graph_algorithms.find_max_flow();
-    for(auto result : res){
-        cout<<"\n"<<result.station1->getId()<<"------"<<result.numTrains<<"-------------->"<<result.station2->getId()<<"\n";
-    }
+    return res;
 }
 
 int Manager::find_max_number_of_trains_to_station(string stationID){
@@ -80,11 +81,15 @@ vector<FlowPerMunicOrDis> Manager::TopKMunicipesForWithMoreTraficPotencial(int k
     return graph_algorithms.TopKMunicipesForWithMoreTraficPotencial(k);
 }
 
-int Manager::MaxFlowWithMinCost(string s,string t){
+pair<int,int> Manager::MaxFlowWithMinCost(string s,string t){
     int price = INT16_MAX;
+    Vertex* v1=graph_algorithms.findVertex(s);
+    Vertex* v2=graph_algorithms.findVertex(t);
+    if( v1== nullptr or v2== nullptr){
+        return make_pair(-1,-1);
+    }
     int tmp = graph_algorithms.edmondsKarpWithDijska(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),price);
-    cout<<"Number of trains :"<<tmp<<"Price :"<<tmp*price;
-    return 1;
+    return make_pair(tmp,tmp*price);
 }
 // é assim que se usa as funções
 //vector<Edge> edges;
@@ -94,11 +99,24 @@ int Manager::MaxFlowWithMinCost(string s,string t){
 int Manager::MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges){
     vector<Edge*> edges;
     for(EdgeSearch e : unusableEdges){
-        edges.push_back(graph_algorithms.findEdge(e.station1 , e.station2));
+        Edge * edge=graph_algorithms.findEdge(e.station1 , e.station2);
+        if(edge== nullptr){
+            return -2;
+        }
+        edges.push_back(edge);
     }
     return graph_algorithms.edmondsKarpReducedConnectivity(graph_algorithms.findVertex(s),graph_algorithms.findVertex(t),edges);
 }
 
 vector<AfectedStation> Manager::TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges){
-    return graph_algorithms.TopKStationsThatAreAffectedByReducedConectivity(k,unusedEdges);
+    vector<Edge*> edges;
+    for(EdgeSearch& e : unusedEdges){
+        Edge * e1 = graph_algorithms.findEdge(e.station1,e.station2);
+        if(e1== nullptr){
+            return {{nullptr,-2,-2}};
+        }
+        edges.push_back(e1);
+        edges.push_back(e1->getReverse());
+    }
+    return graph_algorithms.TopKStationsThatAreAffectedByReducedConectivity(k,edges);
 }

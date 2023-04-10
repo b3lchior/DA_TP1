@@ -36,12 +36,12 @@ public:
      * @param source source station
      * @param target target station
      */
-    void MaxFlow(string source, string target);
+    int MaxFlow(string source, string target);
 
     /**
      * @brief Function that calculates the maximum flow between two stations
      */
-    void MaxFlowFromNetwork();
+    vector<MaxTrainPair> MaxFlowFromNetwork();
 
     /**
      * @brief Function that calls a function to calculate the max number of trains that can be sent to a station
@@ -69,7 +69,7 @@ public:
      * @param  t target station
      * @return max flow with min cost
      */
-    int MaxFlowWithMinCost(string s,string t);
+    pair<int,int> MaxFlowWithMinCost(string s,string t);
 
     /**
      * @brief Function that calls a function that calculates the max flow with reduced connectivity

@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <climits>
+
 using namespace std;
 int GraphAlgorithms::finMinResidualaLongPath(Vertex* s,Vertex* t){
     double f  = INT16_MAX;
@@ -225,7 +227,9 @@ int GraphAlgorithms::find_max_number_of_trains_to_station(string stationID){
     vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
     for(auto v : srcs){
         //cout<<"AddEdge";
-        addEdge("DELETE",v->getId(),INT16_MAX,"delete");
+        if(v->getId() != stationID){
+            addEdge("DELETE",v->getId(),INT16_MAX,"delete");
+        }
     }
     Vertex* s = findVertex("DELETE");
     auto result = edmondsKarp(s,t);
@@ -421,11 +425,6 @@ int GraphAlgorithms::edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<
         e->setSelected(true);
         Edge* e2 = e->getReverse();
         e2->setSelected(true);
-        //for(Edge* e3 : e->getDest()->getAdj()){
-        //    if(e3->isSelected() && e3->getDest() == e->getOrig()){
-        //        cout<<"Ok\n";
-        //    }
-        //}
     }
 
     if(s == nullptr || t == nullptr || s == t)
@@ -453,13 +452,24 @@ int GraphAlgorithms::edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<
 int GraphAlgorithms::find_max_number_of_trains_to_stationAux(string stationID){
     Vertex* t = findVertex(stationID);
     Vertex* s = findVertex("DELETE");
-    auto result = edmondsKarp(s,t);
+    vector<Edge*> edgesReduced;
+    for(Edge* e : s->getAdj()){
+        if(e->getDest()->getId()==stationID){
+            edgesReduced.push_back(e);
+        }
+    }
+    auto result = edmondsKarpReducedConnectivity(s,t,edgesReduced);
     return result;
 }
 
 int GraphAlgorithms::find_max_number_of_trains_to_station_with_congested_network(string stationID,vector<Edge*> edgesReduced){
     Vertex* t = findVertex(stationID);
     Vertex* s = findVertex("DELETE");
+    for(Edge* e : s->getAdj()){
+        if(e->getDest()->getId()==stationID){
+            edgesReduced.push_back(e);
+        }
+    }
     auto result = edmondsKarpReducedConnectivity(s,t,edgesReduced);
     return result;
 }
@@ -467,20 +477,33 @@ int GraphAlgorithms::find_max_number_of_trains_to_station_with_congested_network
 bool cmpStation(AfectedStation& a,
          AfectedStation& b)
 {
+    if(a.numTrainsBefore-a.numTrainsAfter == b.numTrainsBefore - b.numTrainsAfter){
+        int percentage;
+        if(a.numTrainsBefore != 0){
+            percentage = 100 - (a.numTrainsAfter*100)/a.numTrainsBefore;
+        }else{
+            percentage = 0;
+        }
+        int percentage1;
+        if(b.numTrainsBefore != 0){
+            percentage1 = 100 - (b.numTrainsAfter*100)/b.numTrainsBefore;
+        }else{
+            percentage1 = 0;
+        }
+        return percentage>percentage1;
+    }
     return a.numTrainsBefore-a.numTrainsAfter > b.numTrainsBefore - b.numTrainsAfter;
 }
 
-vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<EdgeSearch> unusableEdges){
+vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedConectivity(int k , vector<Edge*> unusableEdges){
     vector<AfectedStation> res;
     vector<AfectedStation> resTmp;
 
     addVertex("DELETE","DELETE","DELETE","DELETE","DELETE");
     vector<Vertex*> srcs = find_vertexes_with_only_one_edge();
     for(auto v : srcs){
-        addEdge("DELETE",v->getId(),INT16_MAX,"delete");
+        addBidirectionalEdge("DELETE",v->getId(),INT16_MAX,"delete");
     }
-
-
 
     for(int i = 0 ; i<vertexSet.size();i++){
         AfectedStation tmp;
@@ -488,16 +511,8 @@ vector<AfectedStation> GraphAlgorithms::TopKStationsThatAreAffectedByReducedCone
         tmp.numTrainsBefore=find_max_number_of_trains_to_stationAux(vertexSet[i]->getId());
         resTmp.push_back(tmp);
     }
-    vector<Edge*> edges;
-    for(EdgeSearch& e : unusableEdges){
-        Edge * e1 = findEdge(e.station1,e.station2);
-        edges.push_back(e1);
-        edges.push_back(e1->getReverse());
-        //cout<<e1->getOrig()->getId()<<"    "<<e1->getDest()->getId()<<"\n";
-    }
     for(int i = 0 ; i<vertexSet.size();i++){
-        resTmp[i].numTrainsAfter=find_max_number_of_trains_to_station_with_congested_network(vertexSet[i]->getId(),edges);
-        //cout<<resTmp[i].numTrainsBefore<<"     "<<resTmp[i].numTrainsAfter<<"\n";
+        resTmp[i].numTrainsAfter=find_max_number_of_trains_to_station_with_congested_network(vertexSet[i]->getId(),unusableEdges);
     }
     removeVertex("DELETE");
     sort(resTmp.begin(),resTmp.end(), cmpStation);
