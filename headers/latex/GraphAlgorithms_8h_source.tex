@@ -1,0 +1,91 @@
+\hypertarget{GraphAlgorithms_8h_source}{}\doxysection{Graph\+Algorithms.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ tomas\ on\ 17/03/2023.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DA\_TP1\_GRAPHALGORITHMS\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DA\_TP1\_GRAPHALGORITHMS\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMaxTrainPair}{MaxTrainPair}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex}}*\ station1;}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex}}*\ station2;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ numTrains;}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAfectedStation}{AfectedStation}}\{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex}}*\ station;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ numTrainsBefore;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ numTrainsAfter;}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEdgeSearch}{EdgeSearch}}\{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{string}\ station1;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{string}\ station2;}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structFlowPerMunicOrDis}{FlowPerMunicOrDis}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{string}\ DistrOrMunic;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ numTrains;}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGraphAlgorithms}{GraphAlgorithms}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classGraph}{Graph}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_a7b5d8ca55c363d129a3aebdd6c93f53e}{edmondsKarp}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t);}
+\DoxyCodeLine{00047\ \ \ \ \ vector<MaxTrainPair>\ \mbox{\hyperlink{classGraphAlgorithms_a7743bb7b0ca9666233bb6529ffb112b7}{find\_max\_flow}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_a8fc6922f78c80b5480e3e2f44d05bb02}{find\_max\_number\_of\_trains\_to\_station}}(\textcolor{keywordtype}{string}\ stationID);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00066\ \ \ \ \ vector<FlowPerMunicOrDis>\ \mbox{\hyperlink{classGraphAlgorithms_a8cdb089cabef0c3a34d3d7fa38a3f687}{TopKMunicipesForWithMoreTraficPotencial}}(\textcolor{keywordtype}{int}\ k);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00075\ \ \ \ \ vector<FlowPerMunicOrDis>\ \mbox{\hyperlink{classGraphAlgorithms_a263885df52809e4bac2d5a13cb04bb80}{TopKDistricsForWithMoreTraficPotencial}}(\textcolor{keywordtype}{int}\ k);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_a58685fb1a172cb92e9ec0902722c63be}{edmondsKarpWithDijska}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t,\textcolor{keywordtype}{int}\ \&price);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_a2e12d57cdf79b52cc9e259ebcb6c1a85}{edmondsKarpReducedConnectivity}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t,\ vector<Edge*>\ edgesReduced);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00109\ \ \ \ \ vector<AfectedStation>\ \mbox{\hyperlink{classGraphAlgorithms_a1a40093e6b997399ccb1a50a70c0c4ac}{TopKStationsThatAreAffectedByReducedConectivity}}(\textcolor{keywordtype}{int}\ k,vector<EdgeSearch>\ unusedEdges);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classGraphAlgorithms_aee5c7a72d06e03f76f41a117f066de8b}{getMunicipes}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00121\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classGraphAlgorithms_a08934472eb8ac30f48bdb5a44d8dde8a}{getDistrics}}();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00130\ \ \ \ \ vector<Vertex*>\ \mbox{\hyperlink{classGraphAlgorithms_a12e07a19a5cc26bb9a453a29857bd3ce}{findVertexsInMunicipe}}(\textcolor{keywordtype}{string}\ municipe);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00139\ \ \ \ \ vector<Vertex*>\ \mbox{\hyperlink{classGraphAlgorithms_abff3651d8436f69ccecad7d1b6eab42e}{findVertexsInDistricts}}(\textcolor{keywordtype}{string}\ district);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_a27b4edc0d50b038a18315d1f91fec26c}{find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network}}(\textcolor{keywordtype}{string}\ stationID,vector<Edge*>\ edgesReduced);}
+\DoxyCodeLine{00150\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_aa06fc419a96315f9f566858c43bc7ad7}{find\_max\_number\_of\_trains\_to\_stationAux}}(\textcolor{keywordtype}{string}\ stationID);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classGraphAlgorithms_aeb29dda9700f03e5278e9208541f2411}{findArgumentingPathWithDijka}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t,\textcolor{keywordtype}{int}\ \&mim);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGraphAlgorithms_a01e6d0c2088be25af90a639dc15547f3}{testAndVisitDisjka}}(\mbox{\hyperlink{classMutablePriorityQueue}{MutablePriorityQueue<Vertex>}}\&\ q,\mbox{\hyperlink{classEdge}{Edge}}*\ e\ ,\mbox{\hyperlink{classVertex}{Vertex}}*\ w\ ,\textcolor{keywordtype}{double}\ residual,\ \textcolor{keywordtype}{int}\ dist\_init);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00193\ \ \ \ \ vector<Vertex*>\ \mbox{\hyperlink{classGraphAlgorithms_ae17582f3a885211aacb0d898bf208934}{find\_vertexes\_with\_only\_one\_edge}}();}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classGraphAlgorithms_ab8b89b4bbc6b9be7c70c05f70caed1b8}{findArgumentingPath}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00214\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_a5502807c0b1cc8debc68393c7c87f97c}{finMinResidualaLongPath}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00225\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGraphAlgorithms_a27e4f54daed842a3143773d5b01f1c6d}{argumentFlowAlongPath}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t,\textcolor{keywordtype}{int}\ f);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00237\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGraphAlgorithms_a237a2dd32b2b63884558827c1ecad54e}{testAndVisit}}(std::queue<Vertex*>\&\ q,\mbox{\hyperlink{classEdge}{Edge}}*\ e\ ,\mbox{\hyperlink{classVertex}{Vertex}}*\ w\ ,\textcolor{keywordtype}{double}\ residual);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00247\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraphAlgorithms_ac5497c0ea4d4a6f8ac61e1aedb54d681}{finMinResidualaLongPathReducedConnectivity}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00259\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGraphAlgorithms_aee14331c95071554f9ae2138ea5a6a3f}{argumentFlowAlongPathReducedConnectivity}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t,\textcolor{keywordtype}{int}\ f);}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGraphAlgorithms_a865d93733c877d75837727753a35b4f6}{testAndVisitReducedConnectivity}}(std::queue<Vertex*>\&\ q,\mbox{\hyperlink{classEdge}{Edge}}*\ e\ ,\mbox{\hyperlink{classVertex}{Vertex}}*\ w\ ,\textcolor{keywordtype}{double}\ residual);}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00280\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classGraphAlgorithms_a31b2bcc3fb2a21fa8a0f8ce8dd97de70}{findArgumentingPathReducedConnectivity}}(\mbox{\hyperlink{classVertex}{Vertex}}*\ s,\mbox{\hyperlink{classVertex}{Vertex}}*\ t);}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \};}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_TP1\_GRAPHALGORITHMS\_H}}
+
+\end{DoxyCode}

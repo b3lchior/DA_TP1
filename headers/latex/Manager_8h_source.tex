@@ -1,0 +1,44 @@
+\hypertarget{Manager_8h_source}{}\doxysection{Manager.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ tomas\ on\ 15/03/2023.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DA\_TP1\_MANAGER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DA\_TP1\_MANAGER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}GraphAlgorithms.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classManager}{Manager}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classGraphAlgorithms}{GraphAlgorithms}}\ graph\_algorithms;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_a5dbc8f69477eb6fa2000b21e1150a91c}{read\_files}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_a4053dde3f142267914528304b3c3a0ee}{ReadStations}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_aaebe318dcf917d087e67073d1b0e2c08}{ReadRoutes}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classGraphAlgorithms}{GraphAlgorithms}}\ \mbox{\hyperlink{classManager_a03f9bfa621016128597133c1ff63543a}{getGraph}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_a3fbb8aa6b2da9173ffad31d9fbe6cbae}{MaxFlow}}(\textcolor{keywordtype}{string}\ source,\ \textcolor{keywordtype}{string}\ target);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classManager_acfc0a8afd8b139b6b433a6eb3a5fb529}{MaxFlowFromNetwork}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classManager_a0b390a622dcc39c04b440cb0f220045b}{find\_max\_number\_of\_trains\_to\_station}}(\textcolor{keywordtype}{string}\ stationID);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ \ \ vector<FlowPerMunicOrDis>\ \mbox{\hyperlink{classManager_a00b017857541d5f8cc9e0336f87e3a54}{TopKDistricsForWithMoreTraficPotencial}}(\textcolor{keywordtype}{int}\ k);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \ \ \ \ vector<FlowPerMunicOrDis>\ \mbox{\hyperlink{classManager_a975cb55cb1e71d88fdfa488b203284c0}{TopKMunicipesForWithMoreTraficPotencial}}(\textcolor{keywordtype}{int}\ k);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classManager_ad54e17007f411cc60923f3c807848296}{MaxFlowWithMinCost}}(\textcolor{keywordtype}{string}\ s,\textcolor{keywordtype}{string}\ t);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classManager_ae28b139a8ec3ae99e7b3853b0cadcdad}{MaxFlowWithWithReducedConectivity}}(\textcolor{keywordtype}{string}\ s,\textcolor{keywordtype}{string}\ t\ ,\ vector<EdgeSearch>\ unusableEdges);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \ \ \ \ vector<AfectedStation>\ \mbox{\hyperlink{classManager_afef229bf638a0921b85bf3b41e74cc71}{TopKStationsThatAreAffectedByReducedConectivity}}(\textcolor{keywordtype}{int}\ k\ ,vector<EdgeSearch>\ unusedEdges);}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_TP1\_MANAGER\_H}}
+
+\end{DoxyCode}

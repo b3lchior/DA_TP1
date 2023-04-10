@@ -1,0 +1,184 @@
+\hypertarget{classManager}{}\doxysection{Manager Class Reference}
+\label{classManager}\index{Manager@{Manager}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classManager_a5dbc8f69477eb6fa2000b21e1150a91c}\label{classManager_a5dbc8f69477eb6fa2000b21e1150a91c} 
+void {\bfseries read\+\_\+files} ()
+\begin{DoxyCompactList}\small\item\em Function that calls the functions that read the files. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_a4053dde3f142267914528304b3c3a0ee}\label{classManager_a4053dde3f142267914528304b3c3a0ee} 
+void {\bfseries Read\+Stations} ()
+\begin{DoxyCompactList}\small\item\em Function that reads the file stations.\+csv and adds the stations as vertexes to the graph. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_aaebe318dcf917d087e67073d1b0e2c08}\label{classManager_aaebe318dcf917d087e67073d1b0e2c08} 
+void {\bfseries Read\+Routes} ()
+\begin{DoxyCompactList}\small\item\em Function that reads the file network.\+csv and adds the routes as edges to the graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraphAlgorithms}{Graph\+Algorithms}} \mbox{\hyperlink{classManager_a03f9bfa621016128597133c1ff63543a}{get\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Function that gets the network graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a3fbb8aa6b2da9173ffad31d9fbe6cbae}{Max\+Flow}} (string source, string target)
+\begin{DoxyCompactList}\small\item\em Function that calculates the maximum flow between two stations. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_acfc0a8afd8b139b6b433a6eb3a5fb529}\label{classManager_acfc0a8afd8b139b6b433a6eb3a5fb529} 
+void {\bfseries Max\+Flow\+From\+Network} ()
+\begin{DoxyCompactList}\small\item\em Function that calculates the maximum flow between two stations. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classManager_a0b390a622dcc39c04b440cb0f220045b}{find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station}} (string station\+ID)
+\begin{DoxyCompactList}\small\item\em Function that calls a function to calculate the max number of trains that can be sent to a station. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ \mbox{\hyperlink{classManager_a00b017857541d5f8cc9e0336f87e3a54}{Top\+KDistrics\+For\+With\+More\+Trafic\+Potencial}} (int k)
+\begin{DoxyCompactList}\small\item\em Function that calls a function that calculates top k stations with more traffic potential. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ \mbox{\hyperlink{classManager_a975cb55cb1e71d88fdfa488b203284c0}{Top\+KMunicipes\+For\+With\+More\+Trafic\+Potencial}} (int k)
+\begin{DoxyCompactList}\small\item\em Function that calls a function that calculates the top k municipalities with more traffic potential. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classManager_ad54e17007f411cc60923f3c807848296}{Max\+Flow\+With\+Min\+Cost}} (string s, string t)
+\begin{DoxyCompactList}\small\item\em Function that calls a function that calculates the max flow with min cost. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classManager_ae28b139a8ec3ae99e7b3853b0cadcdad}{Max\+Flow\+With\+With\+Reduced\+Conectivity}} (string s, string t, vector$<$ \mbox{\hyperlink{structEdgeSearch}{Edge\+Search}} $>$ unusable\+Edges)
+\begin{DoxyCompactList}\small\item\em Function that calls a function that calculates the max flow with reduced connectivity. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structAfectedStation}{Afected\+Station}} $>$ \mbox{\hyperlink{classManager_afef229bf638a0921b85bf3b41e74cc71}{Top\+KStations\+That\+Are\+Affected\+By\+Reduced\+Conectivity}} (int k, vector$<$ \mbox{\hyperlink{structEdgeSearch}{Edge\+Search}} $>$ unused\+Edges)
+\begin{DoxyCompactList}\small\item\em Function that calls a function that calculates the top k stations that are affected by reduced connectivity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classManager_a0b390a622dcc39c04b440cb0f220045b}\label{classManager_a0b390a622dcc39c04b440cb0f220045b} 
+\index{Manager@{Manager}!find\_max\_number\_of\_trains\_to\_station@{find\_max\_number\_of\_trains\_to\_station}}
+\index{find\_max\_number\_of\_trains\_to\_station@{find\_max\_number\_of\_trains\_to\_station}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{find\_max\_number\_of\_trains\_to\_station()}{find\_max\_number\_of\_trains\_to\_station()}}
+{\footnotesize\ttfamily int Manager\+::find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station (\begin{DoxyParamCaption}\item[{string}]{station\+ID }\end{DoxyParamCaption})}
+
+
+
+Function that calls a function to calculate the max number of trains that can be sent to a station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station\+ID} & station id \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a03f9bfa621016128597133c1ff63543a}\label{classManager_a03f9bfa621016128597133c1ff63543a} 
+\index{Manager@{Manager}!getGraph@{getGraph}}
+\index{getGraph@{getGraph}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraphAlgorithms}{Graph\+Algorithms}} Manager\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that gets the network graph. 
+
+\begin{DoxyReturn}{Returns}
+network graph 
+\end{DoxyReturn}
+\Hypertarget{classManager_a3fbb8aa6b2da9173ffad31d9fbe6cbae}\label{classManager_a3fbb8aa6b2da9173ffad31d9fbe6cbae} 
+\index{Manager@{Manager}!MaxFlow@{MaxFlow}}
+\index{MaxFlow@{MaxFlow}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxFlow()}{MaxFlow()}}
+{\footnotesize\ttfamily void Manager\+::\+Max\+Flow (\begin{DoxyParamCaption}\item[{string}]{source,  }\item[{string}]{target }\end{DoxyParamCaption})}
+
+
+
+Function that calculates the maximum flow between two stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & source station \\
+\hline
+{\em target} & target station \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_ad54e17007f411cc60923f3c807848296}\label{classManager_ad54e17007f411cc60923f3c807848296} 
+\index{Manager@{Manager}!MaxFlowWithMinCost@{MaxFlowWithMinCost}}
+\index{MaxFlowWithMinCost@{MaxFlowWithMinCost}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxFlowWithMinCost()}{MaxFlowWithMinCost()}}
+{\footnotesize\ttfamily int Manager\+::\+Max\+Flow\+With\+Min\+Cost (\begin{DoxyParamCaption}\item[{string}]{s,  }\item[{string}]{t }\end{DoxyParamCaption})}
+
+
+
+Function that calls a function that calculates the max flow with min cost. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & source station \\
+\hline
+{\em t} & target station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+max flow with min cost 
+\end{DoxyReturn}
+\Hypertarget{classManager_ae28b139a8ec3ae99e7b3853b0cadcdad}\label{classManager_ae28b139a8ec3ae99e7b3853b0cadcdad} 
+\index{Manager@{Manager}!MaxFlowWithWithReducedConectivity@{MaxFlowWithWithReducedConectivity}}
+\index{MaxFlowWithWithReducedConectivity@{MaxFlowWithWithReducedConectivity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxFlowWithWithReducedConectivity()}{MaxFlowWithWithReducedConectivity()}}
+{\footnotesize\ttfamily int Manager\+::\+Max\+Flow\+With\+With\+Reduced\+Conectivity (\begin{DoxyParamCaption}\item[{string}]{s,  }\item[{string}]{t,  }\item[{vector$<$ \mbox{\hyperlink{structEdgeSearch}{Edge\+Search}} $>$}]{unusable\+Edges }\end{DoxyParamCaption})}
+
+
+
+Function that calls a function that calculates the max flow with reduced connectivity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & source station \\
+\hline
+{\em t} & target station \\
+\hline
+{\em unusable\+Edges} & vector with the edges that are not usable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+max flow with reduced connectivity 
+\end{DoxyReturn}
+\Hypertarget{classManager_a00b017857541d5f8cc9e0336f87e3a54}\label{classManager_a00b017857541d5f8cc9e0336f87e3a54} 
+\index{Manager@{Manager}!TopKDistricsForWithMoreTraficPotencial@{TopKDistricsForWithMoreTraficPotencial}}
+\index{TopKDistricsForWithMoreTraficPotencial@{TopKDistricsForWithMoreTraficPotencial}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopKDistricsForWithMoreTraficPotencial()}{TopKDistricsForWithMoreTraficPotencial()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ Manager\+::\+Top\+KDistrics\+For\+With\+More\+Trafic\+Potencial (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Function that calls a function that calculates top k stations with more traffic potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & number of stations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector with the top k stations with more traffic potential 
+\end{DoxyReturn}
+\Hypertarget{classManager_a975cb55cb1e71d88fdfa488b203284c0}\label{classManager_a975cb55cb1e71d88fdfa488b203284c0} 
+\index{Manager@{Manager}!TopKMunicipesForWithMoreTraficPotencial@{TopKMunicipesForWithMoreTraficPotencial}}
+\index{TopKMunicipesForWithMoreTraficPotencial@{TopKMunicipesForWithMoreTraficPotencial}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopKMunicipesForWithMoreTraficPotencial()}{TopKMunicipesForWithMoreTraficPotencial()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ Manager\+::\+Top\+KMunicipes\+For\+With\+More\+Trafic\+Potencial (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Function that calls a function that calculates the top k municipalities with more traffic potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & number of municipalities \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector with the top k municipalities with more traffic potential 
+\end{DoxyReturn}
+\Hypertarget{classManager_afef229bf638a0921b85bf3b41e74cc71}\label{classManager_afef229bf638a0921b85bf3b41e74cc71} 
+\index{Manager@{Manager}!TopKStationsThatAreAffectedByReducedConectivity@{TopKStationsThatAreAffectedByReducedConectivity}}
+\index{TopKStationsThatAreAffectedByReducedConectivity@{TopKStationsThatAreAffectedByReducedConectivity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopKStationsThatAreAffectedByReducedConectivity()}{TopKStationsThatAreAffectedByReducedConectivity()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structAfectedStation}{Afected\+Station}} $>$ Manager\+::\+Top\+KStations\+That\+Are\+Affected\+By\+Reduced\+Conectivity (\begin{DoxyParamCaption}\item[{int}]{k,  }\item[{vector$<$ \mbox{\hyperlink{structEdgeSearch}{Edge\+Search}} $>$}]{unused\+Edges }\end{DoxyParamCaption})}
+
+
+
+Function that calls a function that calculates the top k stations that are affected by reduced connectivity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & number of stations \\
+\hline
+{\em unused\+Edges} & vector with the edges that are not usable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector with the top k stations that are affected by reduced connectivity 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Manager.\+h\end{DoxyCompactItemize}

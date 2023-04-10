@@ -1,0 +1,590 @@
+\hypertarget{classGraphAlgorithms}{}\doxysection{Graph\+Algorithms Class Reference}
+\label{classGraphAlgorithms}\index{GraphAlgorithms@{GraphAlgorithms}}
+Inheritance diagram for Graph\+Algorithms\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classGraphAlgorithms}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGraphAlgorithms_a7b5d8ca55c363d129a3aebdd6c93f53e}{edmonds\+Karp}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Computes the maximum flow from source to sink using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structMaxTrainPair}{Max\+Train\+Pair}} $>$ \mbox{\hyperlink{classGraphAlgorithms_a7743bb7b0ca9666233bb6529ffb112b7}{find\+\_\+max\+\_\+flow}} ()
+\begin{DoxyCompactList}\small\item\em Finds the maximum flow between all pairs of vertices in the graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphAlgorithms_a8fc6922f78c80b5480e3e2f44d05bb02}{find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station}} (string station\+ID)
+\begin{DoxyCompactList}\small\item\em Computes the maximum number of trains that can be sent to a given station. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ \mbox{\hyperlink{classGraphAlgorithms_a8cdb089cabef0c3a34d3d7fa38a3f687}{Top\+KMunicipes\+For\+With\+More\+Trafic\+Potencial}} (int k)
+\begin{DoxyCompactList}\small\item\em Finds the top k municipalities with the most traffic potential based on the number of trains that can be routed between stations within each municipality. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ \mbox{\hyperlink{classGraphAlgorithms_a263885df52809e4bac2d5a13cb04bb80}{Top\+KDistrics\+For\+With\+More\+Trafic\+Potencial}} (int k)
+\begin{DoxyCompactList}\small\item\em Computes the top k districts with the highest traffic potential. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphAlgorithms_a58685fb1a172cb92e9ec0902722c63be}{edmonds\+Karp\+With\+Dijska}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, int \&price)
+\begin{DoxyCompactList}\small\item\em Computes the maximum flow from source to sink using the Edmonds-\/\+Karp algorithm with Dijkstra\textquotesingle{}s algorithm to compute the minimum residual capacity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphAlgorithms_a2e12d57cdf79b52cc9e259ebcb6c1a85}{edmonds\+Karp\+Reduced\+Connectivity}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, vector$<$ \mbox{\hyperlink{classEdge}{Edge}} $\ast$ $>$ edges\+Reduced)
+\begin{DoxyCompactList}\small\item\em Applies the Edmonds-\/\+Karp algorithm with reduced connectivity to find the maximum flow from s to t. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structAfectedStation}{Afected\+Station}} $>$ \mbox{\hyperlink{classGraphAlgorithms_a1a40093e6b997399ccb1a50a70c0c4ac}{Top\+KStations\+That\+Are\+Affected\+By\+Reduced\+Conectivity}} (int k, vector$<$ \mbox{\hyperlink{structEdgeSearch}{Edge\+Search}} $>$ unused\+Edges)
+\begin{DoxyCompactList}\small\item\em Finds the top K stations that are most affected by a reduced connectivity scenario caused by the removal of certain edges. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classGraphAlgorithms_aee5c7a72d06e03f76f41a117f066de8b}{get\+Municipes}} ()
+\begin{DoxyCompactList}\small\item\em returns a vector with the names of all the municipalities present in the graph. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classGraphAlgorithms_a08934472eb8ac30f48bdb5a44d8dde8a}{get\+Districs}} ()
+\begin{DoxyCompactList}\small\item\em returns a vector with the names of all the districts present in the graph. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classGraphAlgorithms_a12e07a19a5cc26bb9a453a29857bd3ce}{find\+Vertexs\+In\+Municipe}} (string municipe)
+\begin{DoxyCompactList}\small\item\em Retrieves a vector of all vertices in the graph that belong to a specific municipality. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classGraphAlgorithms_abff3651d8436f69ccecad7d1b6eab42e}{find\+Vertexs\+In\+Districts}} (string district)
+\begin{DoxyCompactList}\small\item\em Retrieves a vector of all vertices in the graph that belong to a specific district. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphAlgorithms_a27b4edc0d50b038a18315d1f91fec26c}{find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station\+\_\+with\+\_\+congested\+\_\+network}} (string station\+ID, vector$<$ \mbox{\hyperlink{classEdge}{Edge}} $\ast$ $>$ edges\+Reduced)
+\begin{DoxyCompactList}\small\item\em Computes the maximum number of trains that can be sent to a specific station with a congested network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{classGraph}{Graph}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGraph_a902c5b3eacb66d60752525ab23297a95}\label{classGraph_a902c5b3eacb66d60752525ab23297a95} 
+{\bfseries $\sim$\+Graph} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classGraph}{Graph} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVertex}{Vertex}} $\ast$ \mbox{\hyperlink{classGraph_a4c73af522cebce9c30d0145fea00f0b9}{find\+Vertex}} (const string \&id) const
+\begin{DoxyCompactList}\small\item\em find a vertex in the graph with the given id, if it does not exists return nullptr \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_a3635dfc9eda6436fe0a51765e7ea1498}{add\+Vertex}} (string name, string district, string municipality, string township, string line)
+\begin{DoxyCompactList}\small\item\em add a vertex to the graph \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_a1c7110941de246c406c50c5311abfa29}{remove\+Vertex}} (const string \&id)
+\begin{DoxyCompactList}\small\item\em remove a vertex from the graph \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_a34e12534631f32aa55bc1778da60a57e}{add\+Edge}} (const string \&sourc, const string \&dest, double w, string service)
+\begin{DoxyCompactList}\small\item\em add a edge to a vertex of the graph \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_af405eba5c4286fd0e8c2b081a17d77f7}{add\+Bidirectional\+Edge}} (const string \&sourc, const string \&dest, double w, string service)
+\begin{DoxyCompactList}\small\item\em add a edge from source to destination vertex and another edge the other way \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classGraph_a8f19f005704401983591d3283a896a09}{find\+Edge}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$dest, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$orig, double weight, string service)
+\begin{DoxyCompactList}\small\item\em find edge between two vertices \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classGraph_ad7bb5ad1815614ea8d548989346da414}{find\+Edge}} (string orig, string dest)
+\begin{DoxyCompactList}\small\item\em find edge between two vertices \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classGraph_a459b494b4813c66585cb1d0fdc455e0c}{find\+Edge}} (\mbox{\hyperlink{classEdge}{Edge}} e)
+\begin{DoxyCompactList}\small\item\em find edge by edge \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraph_abb5e0517e2979c54eebdafc2a9875e8f}{get\+Num\+Vertex}} () const
+\begin{DoxyCompactList}\small\item\em get the number of vertex in the graph \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classGraph_a619ac583094079134074658e29463c0e}{get\+Vertex\+Set}} () const
+\begin{DoxyCompactList}\small\item\em gets the vertex set \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGraphAlgorithms_aa06fc419a96315f9f566858c43bc7ad7}{find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station\+Aux}} (string station\+ID)
+\begin{DoxyCompactList}\small\item\em Computes the maximum number of trains that can be sent to a specific station without network congestion. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphAlgorithms_aeb29dda9700f03e5278e9208541f2411}{find\+Argumenting\+Path\+With\+Dijka}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, int \&mim)
+\begin{DoxyCompactList}\small\item\em finds an augmenting path using Dijkstra\textquotesingle{}s algorithm from the source vertex to the sink vertex in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphAlgorithms_a01e6d0c2088be25af90a639dc15547f3}{test\+And\+Visit\+Disjka}} (\mbox{\hyperlink{classMutablePriorityQueue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{classVertex}{Vertex}} $>$ \&q, \mbox{\hyperlink{classEdge}{Edge}} $\ast$e, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$w, double residual, int dist\+\_\+init)
+\begin{DoxyCompactList}\small\item\em Tests and visits a vertex using Dijkstra\textquotesingle{}s algorithm to find an augmenting path. This function tests and visits a vertex in the graph using Dijkstra\textquotesingle{}s algorithm to find an augmenting path from the source vertex to the sink vertex. The function updates the distance, path, and visited status of the vertex if certain conditions are met, and inserts the vertex into a mutable priority queue for further exploration. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classGraphAlgorithms_ae17582f3a885211aacb0d898bf208934}{find\+\_\+vertexes\+\_\+with\+\_\+only\+\_\+one\+\_\+edge}} ()
+\begin{DoxyCompactList}\small\item\em Finds vertices in the graph with only one incoming and one outgoing edge. This function iterates through all vertices in the graph and identifies those that have only one incoming and one outgoing edge. It stores these vertices in a vector and returns it. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphAlgorithms_ab8b89b4bbc6b9be7c70c05f70caed1b8}{find\+Argumenting\+Path}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds an augmenting path using breadth-\/first search from the source vertex to the sink vertex in the graph. This function uses breadth-\/first search to find an augmenting path from the source vertex to the sink vertex in the graph. It starts by setting all vertices as unvisited and the source vertex as visited, and then uses a queue to explore neighboring vertices. The function tests each vertex and edge it encounters and visits them if certain conditions are met. If the sink vertex is visited, the function returns true; otherwise, it returns false. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphAlgorithms_a5502807c0b1cc8debc68393c7c87f97c}{fin\+Min\+Residuala\+Long\+Path}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds the minimum residual capacity of an augmenting path from the source vertex to the sink vertex in the graph. This function finds the minimum residual capacity of an augmenting path from the source vertex to the sink vertex in the graph using the path stored in the vertices\textquotesingle{} path attribute. It iterates backwards from the sink vertex to the source vertex, checking the residual capacities of the edges on the path and updating the minimum value as necessary. The function returns the minimum residual capacity found. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphAlgorithms_a27e4f54daed842a3143773d5b01f1c6d}{argument\+Flow\+Along\+Path}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, int f)
+\begin{DoxyCompactList}\small\item\em Augments the flow along the given path in the graph by the given amount. This function augments the flow along the given path in the graph by the given amount f, using the path stored in the vertices\textquotesingle{} path attribute. It iterates backwards from the sink vertex to the source vertex, updating the flow along each edge on the path by adding or subtracting the given amount, depending on the direction of the edge. The function does not return anything. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphAlgorithms_a237a2dd32b2b63884558827c1ecad54e}{test\+And\+Visit}} (std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&q, \mbox{\hyperlink{classEdge}{Edge}} $\ast$e, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$w, double residual)
+\begin{DoxyCompactList}\small\item\em Adds the destination vertex of the given edge to the queue if it has not been visited and there is residual capacity on the edge. This function adds the destination vertex of the given edge to the queue if it has not been visited and there is residual capacity on the edge. The function does not return anything. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphAlgorithms_ac5497c0ea4d4a6f8ac61e1aedb54d681}{fin\+Min\+Residuala\+Long\+Path\+Reduced\+Connectivity}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds the minimum residual capacity along the path from vertex s to vertex t in the graph using a modified version of Dijkstra\textquotesingle{}s algorithm that considers edges with reduced connectivity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphAlgorithms_aee14331c95071554f9ae2138ea5a6a3f}{argument\+Flow\+Along\+Path\+Reduced\+Connectivity}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, int f)
+\item 
+void \mbox{\hyperlink{classGraphAlgorithms_a865d93733c877d75837727753a35b4f6}{test\+And\+Visit\+Reduced\+Connectivity}} (std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&q, \mbox{\hyperlink{classEdge}{Edge}} $\ast$e, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$w, double residual)
+\begin{DoxyCompactList}\small\item\em Auxiliary function used in the Edmonds-\/\+Karp algorithm with reduced connectivity. The function checks if a vertex is visited and if there is still residual capacity on the edge. If both conditions are met, the vertex is marked as visited, its path is set to the edge and it is added to the queue. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphAlgorithms_a31b2bcc3fb2a21fa8a0f8ce8dd97de70}{find\+Argumenting\+Path\+Reduced\+Connectivity}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds an augmenting path in a graph with reduced connectivity using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classGraph}{Graph}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGraph_acc3f19a6ff1f252681668fed49877cc0}\label{classGraph_acc3f19a6ff1f252681668fed49877cc0} 
+int {\bfseries find\+Vertex\+Idx} (const string \&id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{classGraph}{Graph}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGraph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}\label{classGraph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6} 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ {\bfseries vertex\+Set}
+\item 
+\Hypertarget{classGraph_a9e61864da69191c1896a25a708d1a02d}\label{classGraph_a9e61864da69191c1896a25a708d1a02d} 
+double $\ast$$\ast$ {\bfseries dist\+Matrix} = nullptr
+\item 
+\Hypertarget{classGraph_a3ae09699c3616af3ebfcb1eb045f2b62}\label{classGraph_a3ae09699c3616af3ebfcb1eb045f2b62} 
+int $\ast$$\ast$ {\bfseries path\+Matrix} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGraphAlgorithms_a27e4f54daed842a3143773d5b01f1c6d}\label{classGraphAlgorithms_a27e4f54daed842a3143773d5b01f1c6d} 
+\index{GraphAlgorithms@{GraphAlgorithms}!argumentFlowAlongPath@{argumentFlowAlongPath}}
+\index{argumentFlowAlongPath@{argumentFlowAlongPath}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{argumentFlowAlongPath()}{argumentFlowAlongPath()}}
+{\footnotesize\ttfamily void Graph\+Algorithms\+::argument\+Flow\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{int}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Augments the flow along the given path in the graph by the given amount. This function augments the flow along the given path in the graph by the given amount f, using the path stored in the vertices\textquotesingle{} path attribute. It iterates backwards from the sink vertex to the source vertex, updating the flow along each edge on the path by adding or subtracting the given amount, depending on the direction of the edge. The function does not return anything. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the source vertex \\
+\hline
+{\em t} & Pointer to the sink vertex \\
+\hline
+{\em f} & The amount by which to augment the flow along the path Time complexity\+: O(\+E), where E is the number of edges in the augmenting path, since the function iterates through each edge in the path only once to update the flow. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGraphAlgorithms_aee14331c95071554f9ae2138ea5a6a3f}\label{classGraphAlgorithms_aee14331c95071554f9ae2138ea5a6a3f} 
+\index{GraphAlgorithms@{GraphAlgorithms}!argumentFlowAlongPathReducedConnectivity@{argumentFlowAlongPathReducedConnectivity}}
+\index{argumentFlowAlongPathReducedConnectivity@{argumentFlowAlongPathReducedConnectivity}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{argumentFlowAlongPathReducedConnectivity()}{argumentFlowAlongPathReducedConnectivity()}}
+{\footnotesize\ttfamily void Graph\+Algorithms\+::argument\+Flow\+Along\+Path\+Reduced\+Connectivity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{int}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+This function updates the flow of the edges along a path from source vertex s to target vertex t, with a given flow f, while considering reduced connectivity. The function starts from target vertex t, and follows the path back to source vertex s, updating the flow of the edges along the way. 
+\begin{DoxyParams}{Parameters}
+{\em s} & pointer to the source vertex of the path \\
+\hline
+{\em t} & pointer to the target vertex of the path \\
+\hline
+{\em f} & the flow to be added/subtracted along the path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a7b5d8ca55c363d129a3aebdd6c93f53e}\label{classGraphAlgorithms_a7b5d8ca55c363d129a3aebdd6c93f53e} 
+\index{GraphAlgorithms@{GraphAlgorithms}!edmondsKarp@{edmondsKarp}}
+\index{edmondsKarp@{edmondsKarp}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{edmondsKarp()}{edmondsKarp()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::edmonds\+Karp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Computes the maximum flow from source to sink using the Edmonds-\/\+Karp algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The ID of the source vertex. \\
+\hline
+{\em target} & The ID of the sink vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow from source to sink.
+\end{DoxyReturn}
+This function has a time complexity of O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. \Hypertarget{classGraphAlgorithms_a2e12d57cdf79b52cc9e259ebcb6c1a85}\label{classGraphAlgorithms_a2e12d57cdf79b52cc9e259ebcb6c1a85} 
+\index{GraphAlgorithms@{GraphAlgorithms}!edmondsKarpReducedConnectivity@{edmondsKarpReducedConnectivity}}
+\index{edmondsKarpReducedConnectivity@{edmondsKarpReducedConnectivity}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{edmondsKarpReducedConnectivity()}{edmondsKarpReducedConnectivity()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::edmonds\+Karp\+Reduced\+Connectivity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{vector$<$ \mbox{\hyperlink{classEdge}{Edge}} $\ast$ $>$}]{edges\+Reduced }\end{DoxyParamCaption})}
+
+
+
+Applies the Edmonds-\/\+Karp algorithm with reduced connectivity to find the maximum flow from s to t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The source vertex. \\
+\hline
+{\em t} & The target vertex. \\
+\hline
+{\em edges\+Reduced} & A vector of edges to be marked as \char`\"{}reduced connectivity\char`\"{}, meaning that they will not be considered in the search for argumenting paths. This is useful when trying to avoid paths that cross certain edges in the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow from s to t. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a58685fb1a172cb92e9ec0902722c63be}\label{classGraphAlgorithms_a58685fb1a172cb92e9ec0902722c63be} 
+\index{GraphAlgorithms@{GraphAlgorithms}!edmondsKarpWithDijska@{edmondsKarpWithDijska}}
+\index{edmondsKarpWithDijska@{edmondsKarpWithDijska}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{edmondsKarpWithDijska()}{edmondsKarpWithDijska()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::edmonds\+Karp\+With\+Dijska (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{int \&}]{price }\end{DoxyParamCaption})}
+
+
+
+Computes the maximum flow from source to sink using the Edmonds-\/\+Karp algorithm with Dijkstra\textquotesingle{}s algorithm to compute the minimum residual capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the source vertex. \\
+\hline
+{\em t} & Pointer to the sink vertex. \\
+\hline
+{\em price} & Reference to an integer variable to store the minimum residual capacity of the augmenting path found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow from source to sink. This function implements the Edmonds-\/\+Karp algorithm, which is a variation of the Ford-\/\+Fulkerson algorithm. It uses breadth-\/first search to find an augmenting path with the minimum residual capacity and updates the flow in the edges along that path. Dijkstra\textquotesingle{}s algorithm is used to compute the minimum residual capacity of the augmenting path. The time complexity of this function is O(\+V$^\wedge$2 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a7743bb7b0ca9666233bb6529ffb112b7}\label{classGraphAlgorithms_a7743bb7b0ca9666233bb6529ffb112b7} 
+\index{GraphAlgorithms@{GraphAlgorithms}!find\_max\_flow@{find\_max\_flow}}
+\index{find\_max\_flow@{find\_max\_flow}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{find\_max\_flow()}{find\_max\_flow()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structMaxTrainPair}{Max\+Train\+Pair}} $>$ Graph\+Algorithms\+::find\+\_\+max\+\_\+flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Finds the maximum flow between all pairs of vertices in the graph. 
+
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{structMaxTrainPair}{Max\+Train\+Pair} objects representing the maximum flow between each pair of vertices.
+\end{DoxyReturn}
+This function has a time complexity of O(\+V$^\wedge$3 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. \Hypertarget{classGraphAlgorithms_a8fc6922f78c80b5480e3e2f44d05bb02}\label{classGraphAlgorithms_a8fc6922f78c80b5480e3e2f44d05bb02} 
+\index{GraphAlgorithms@{GraphAlgorithms}!find\_max\_number\_of\_trains\_to\_station@{find\_max\_number\_of\_trains\_to\_station}}
+\index{find\_max\_number\_of\_trains\_to\_station@{find\_max\_number\_of\_trains\_to\_station}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{find\_max\_number\_of\_trains\_to\_station()}{find\_max\_number\_of\_trains\_to\_station()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station (\begin{DoxyParamCaption}\item[{string}]{station\+ID }\end{DoxyParamCaption})}
+
+
+
+Computes the maximum number of trains that can be sent to a given station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station\+ID} & The ID of the station. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can be sent to the station. This function uses the Edmonds-\/\+Karp algorithm to calculate the maximum number of trains that can be sent to a given station based on the current network congestion. It adds a temporary source vertex and connects it to all vertices with only one outgoing edge, which allows the algorithm to compute the maximum flow from the temporary source to the target station. This function has a time complexity of O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a27b4edc0d50b038a18315d1f91fec26c}\label{classGraphAlgorithms_a27b4edc0d50b038a18315d1f91fec26c} 
+\index{GraphAlgorithms@{GraphAlgorithms}!find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network@{find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network}}
+\index{find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network@{find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network()}{find\_max\_number\_of\_trains\_to\_station\_with\_congested\_network()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station\+\_\+with\+\_\+congested\+\_\+network (\begin{DoxyParamCaption}\item[{string}]{station\+ID,  }\item[{vector$<$ \mbox{\hyperlink{classEdge}{Edge}} $\ast$ $>$}]{edges\+Reduced }\end{DoxyParamCaption})}
+
+
+
+Computes the maximum number of trains that can be sent to a specific station with a congested network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station\+ID} & The ID of the station to calculate the maximum number of trains for. \\
+\hline
+{\em edges\+Reduced} & A vector of edges to be removed from the graph to simulate congestion. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can be sent to the specified station with the given network congestion. This function first finds the target vertex corresponding to the provided station ID, and then creates a source vertex with a unique ID of \char`\"{}\+DELETE\char`\"{} to simulate the removal of edges from the graph. The function then calls the Edmonds-\/\+Karp algorithm with the reduced edge set and returns the resulting maximum flow. This function can be used to calculate the maximum number of trains that can be sent to a station with a congested network. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_aa06fc419a96315f9f566858c43bc7ad7}\label{classGraphAlgorithms_aa06fc419a96315f9f566858c43bc7ad7} 
+\index{GraphAlgorithms@{GraphAlgorithms}!find\_max\_number\_of\_trains\_to\_stationAux@{find\_max\_number\_of\_trains\_to\_stationAux}}
+\index{find\_max\_number\_of\_trains\_to\_stationAux@{find\_max\_number\_of\_trains\_to\_stationAux}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{find\_max\_number\_of\_trains\_to\_stationAux()}{find\_max\_number\_of\_trains\_to\_stationAux()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::find\+\_\+max\+\_\+number\+\_\+of\+\_\+trains\+\_\+to\+\_\+station\+Aux (\begin{DoxyParamCaption}\item[{string}]{station\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Computes the maximum number of trains that can be sent to a specific station without network congestion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station\+ID} & The ID of the station to calculate the maximum number of trains for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can be sent to the specified station without network congestion. This function first finds the target vertex corresponding to the provided station ID, and then creates a source vertex with a unique ID of \char`\"{}\+DELETE\char`\"{}. The function then calls the Edmonds-\/\+Karp algorithm and returns the resulting maximum flow. This function can be used to calculate the maximum number of trains that can be sent to a station without network congestion. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_ae17582f3a885211aacb0d898bf208934}\label{classGraphAlgorithms_ae17582f3a885211aacb0d898bf208934} 
+\index{GraphAlgorithms@{GraphAlgorithms}!find\_vertexes\_with\_only\_one\_edge@{find\_vertexes\_with\_only\_one\_edge}}
+\index{find\_vertexes\_with\_only\_one\_edge@{find\_vertexes\_with\_only\_one\_edge}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{find\_vertexes\_with\_only\_one\_edge()}{find\_vertexes\_with\_only\_one\_edge()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ Graph\+Algorithms\+::find\+\_\+vertexes\+\_\+with\+\_\+only\+\_\+one\+\_\+edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds vertices in the graph with only one incoming and one outgoing edge. This function iterates through all vertices in the graph and identifies those that have only one incoming and one outgoing edge. It stores these vertices in a vector and returns it. 
+
+\begin{DoxyReturn}{Returns}
+A vector of pointers to vertices with only one incoming and one outgoing edge Time complexity\+: O(\+V), where V is the number of vertices in the graph, due to the iteration over all vertices and the constant-\/time operations to check the size of adjacency lists. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_ab8b89b4bbc6b9be7c70c05f70caed1b8}\label{classGraphAlgorithms_ab8b89b4bbc6b9be7c70c05f70caed1b8} 
+\index{GraphAlgorithms@{GraphAlgorithms}!findArgumentingPath@{findArgumentingPath}}
+\index{findArgumentingPath@{findArgumentingPath}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{findArgumentingPath()}{findArgumentingPath()}}
+{\footnotesize\ttfamily bool Graph\+Algorithms\+::find\+Argumenting\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds an augmenting path using breadth-\/first search from the source vertex to the sink vertex in the graph. This function uses breadth-\/first search to find an augmenting path from the source vertex to the sink vertex in the graph. It starts by setting all vertices as unvisited and the source vertex as visited, and then uses a queue to explore neighboring vertices. The function tests each vertex and edge it encounters and visits them if certain conditions are met. If the sink vertex is visited, the function returns true; otherwise, it returns false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the source vertex \\
+\hline
+{\em t} & Pointer to the sink vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if an augmenting path was found, false otherwise Time complexity\+: O(E+V), where E is the number of edges and V is the number of vertices in the graph, due to the traversal of all edges and vertices in the graph in the worst case scenario. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a31b2bcc3fb2a21fa8a0f8ce8dd97de70}\label{classGraphAlgorithms_a31b2bcc3fb2a21fa8a0f8ce8dd97de70} 
+\index{GraphAlgorithms@{GraphAlgorithms}!findArgumentingPathReducedConnectivity@{findArgumentingPathReducedConnectivity}}
+\index{findArgumentingPathReducedConnectivity@{findArgumentingPathReducedConnectivity}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{findArgumentingPathReducedConnectivity()}{findArgumentingPathReducedConnectivity()}}
+{\footnotesize\ttfamily bool Graph\+Algorithms\+::find\+Argumenting\+Path\+Reduced\+Connectivity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds an augmenting path in a graph with reduced connectivity using the Edmonds-\/\+Karp algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The source vertex. \\
+\hline
+{\em t} & The sink vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is an augmenting path from s to t, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_aeb29dda9700f03e5278e9208541f2411}\label{classGraphAlgorithms_aeb29dda9700f03e5278e9208541f2411} 
+\index{GraphAlgorithms@{GraphAlgorithms}!findArgumentingPathWithDijka@{findArgumentingPathWithDijka}}
+\index{findArgumentingPathWithDijka@{findArgumentingPathWithDijka}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{findArgumentingPathWithDijka()}{findArgumentingPathWithDijka()}}
+{\footnotesize\ttfamily bool Graph\+Algorithms\+::find\+Argumenting\+Path\+With\+Dijka (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{int \&}]{mim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+finds an augmenting path using Dijkstra\textquotesingle{}s algorithm from the source vertex to the sink vertex in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the source vertex \\
+\hline
+{\em t} & Pointer to the sink vertex \\
+\hline
+{\em mine} & Reference to an integer that will store the minimum weight of the path found \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if an augmenting path was found, false otherwise
+\end{DoxyReturn}
+Time Complexity\+: O((E+V)logV), where E is the number of edges and V is the number of vertices in the graph. This is because the function uses Dijkstra\textquotesingle{}s algorithm, which has a time complexity of O((E+V)logV), to find the augmenting path. \Hypertarget{classGraphAlgorithms_abff3651d8436f69ccecad7d1b6eab42e}\label{classGraphAlgorithms_abff3651d8436f69ccecad7d1b6eab42e} 
+\index{GraphAlgorithms@{GraphAlgorithms}!findVertexsInDistricts@{findVertexsInDistricts}}
+\index{findVertexsInDistricts@{findVertexsInDistricts}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{findVertexsInDistricts()}{findVertexsInDistricts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ Graph\+Algorithms\+::find\+Vertexs\+In\+Districts (\begin{DoxyParamCaption}\item[{string}]{district }\end{DoxyParamCaption})}
+
+
+
+Retrieves a vector of all vertices in the graph that belong to a specific district. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em district} & The name of the district to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of vertices that belong to the specified district. This function loops through all the vertices in the graph and retrieves vertices whose district name matches the provided parameter. If a vertex is found that belongs to the specified district, it is added to the result vector. The result vector may be empty if no vertices belong to the specified district. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a12e07a19a5cc26bb9a453a29857bd3ce}\label{classGraphAlgorithms_a12e07a19a5cc26bb9a453a29857bd3ce} 
+\index{GraphAlgorithms@{GraphAlgorithms}!findVertexsInMunicipe@{findVertexsInMunicipe}}
+\index{findVertexsInMunicipe@{findVertexsInMunicipe}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{findVertexsInMunicipe()}{findVertexsInMunicipe()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ Graph\+Algorithms\+::find\+Vertexs\+In\+Municipe (\begin{DoxyParamCaption}\item[{string}]{municipe }\end{DoxyParamCaption})}
+
+
+
+Retrieves a vector of all vertices in the graph that belong to a specific municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em municipe} & The name of the municipality to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of vertices that belong to the specified municipality. This function loops through all the vertices in the graph and retrieves vertices whose municipality name matches the provided parameter. If a vertex is found that belongs to the specified municipality, it is added to the result vector. The result vector may be empty if no vertices belong to the specified municipality. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a5502807c0b1cc8debc68393c7c87f97c}\label{classGraphAlgorithms_a5502807c0b1cc8debc68393c7c87f97c} 
+\index{GraphAlgorithms@{GraphAlgorithms}!finMinResidualaLongPath@{finMinResidualaLongPath}}
+\index{finMinResidualaLongPath@{finMinResidualaLongPath}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{finMinResidualaLongPath()}{finMinResidualaLongPath()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::fin\+Min\+Residuala\+Long\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds the minimum residual capacity of an augmenting path from the source vertex to the sink vertex in the graph. This function finds the minimum residual capacity of an augmenting path from the source vertex to the sink vertex in the graph using the path stored in the vertices\textquotesingle{} path attribute. It iterates backwards from the sink vertex to the source vertex, checking the residual capacities of the edges on the path and updating the minimum value as necessary. The function returns the minimum residual capacity found. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the source vertex \\
+\hline
+{\em t} & Pointer to the sink vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum residual capacity of an augmenting path from the source vertex to the sink vertex in the graph Time complexity\+: O(\+E), where E is the number of edges in the augmenting path, since the function iterates through each edge in the path only once to calculate the minimum residual capacity. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_ac5497c0ea4d4a6f8ac61e1aedb54d681}\label{classGraphAlgorithms_ac5497c0ea4d4a6f8ac61e1aedb54d681} 
+\index{GraphAlgorithms@{GraphAlgorithms}!finMinResidualaLongPathReducedConnectivity@{finMinResidualaLongPathReducedConnectivity}}
+\index{finMinResidualaLongPathReducedConnectivity@{finMinResidualaLongPathReducedConnectivity}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{finMinResidualaLongPathReducedConnectivity()}{finMinResidualaLongPathReducedConnectivity()}}
+{\footnotesize\ttfamily int Graph\+Algorithms\+::fin\+Min\+Residuala\+Long\+Path\+Reduced\+Connectivity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds the minimum residual capacity along the path from vertex s to vertex t in the graph using a modified version of Dijkstra\textquotesingle{}s algorithm that considers edges with reduced connectivity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to the source vertex \\
+\hline
+{\em t} & Pointer to the sink vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum residual capacity along the path from vertex s to vertex t Time Complexity\+: O((E+V)logV), where E is the number of edges and V is the number of vertices in the graph. This is because the function uses a modified version of Dijkstra\textquotesingle{}s algorithm to find the minimum residual capacity, which has a time complexity of O((E+V)logV). 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a08934472eb8ac30f48bdb5a44d8dde8a}\label{classGraphAlgorithms_a08934472eb8ac30f48bdb5a44d8dde8a} 
+\index{GraphAlgorithms@{GraphAlgorithms}!getDistrics@{getDistrics}}
+\index{getDistrics@{getDistrics}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{getDistrics()}{getDistrics()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Graph\+Algorithms\+::get\+Districs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns a vector with the names of all the districts present in the graph. 
+
+\begin{DoxyReturn}{Returns}
+A vector with the names of all the districts present in the graph. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_aee5c7a72d06e03f76f41a117f066de8b}\label{classGraphAlgorithms_aee5c7a72d06e03f76f41a117f066de8b} 
+\index{GraphAlgorithms@{GraphAlgorithms}!getMunicipes@{getMunicipes}}
+\index{getMunicipes@{getMunicipes}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{getMunicipes()}{getMunicipes()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Graph\+Algorithms\+::get\+Municipes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns a vector with the names of all the municipalities present in the graph. 
+
+\begin{DoxyReturn}{Returns}
+A vector with the names of all the municipalities present in the graph. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a237a2dd32b2b63884558827c1ecad54e}\label{classGraphAlgorithms_a237a2dd32b2b63884558827c1ecad54e} 
+\index{GraphAlgorithms@{GraphAlgorithms}!testAndVisit@{testAndVisit}}
+\index{testAndVisit@{testAndVisit}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{testAndVisit()}{testAndVisit()}}
+{\footnotesize\ttfamily void Graph\+Algorithms\+::test\+And\+Visit (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&}]{q,  }\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Adds the destination vertex of the given edge to the queue if it has not been visited and there is residual capacity on the edge. This function adds the destination vertex of the given edge to the queue if it has not been visited and there is residual capacity on the edge. The function does not return anything. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Reference to the queue of vertices to visit \\
+\hline
+{\em e} & Pointer to the edge to test \\
+\hline
+{\em w} & Pointer to the destination vertex of the edge \\
+\hline
+{\em residual} & The residual capacity of the edge Time complexity\+: O(1), since the function only performs a constant number of operations regardless of the size of the input. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGraphAlgorithms_a01e6d0c2088be25af90a639dc15547f3}\label{classGraphAlgorithms_a01e6d0c2088be25af90a639dc15547f3} 
+\index{GraphAlgorithms@{GraphAlgorithms}!testAndVisitDisjka@{testAndVisitDisjka}}
+\index{testAndVisitDisjka@{testAndVisitDisjka}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{testAndVisitDisjka()}{testAndVisitDisjka()}}
+{\footnotesize\ttfamily void Graph\+Algorithms\+::test\+And\+Visit\+Disjka (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMutablePriorityQueue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{classVertex}{Vertex}} $>$ \&}]{q,  }\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual,  }\item[{int}]{dist\+\_\+init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Tests and visits a vertex using Dijkstra\textquotesingle{}s algorithm to find an augmenting path. This function tests and visits a vertex in the graph using Dijkstra\textquotesingle{}s algorithm to find an augmenting path from the source vertex to the sink vertex. The function updates the distance, path, and visited status of the vertex if certain conditions are met, and inserts the vertex into a mutable priority queue for further exploration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & A mutable priority queue of vertices \\
+\hline
+{\em e} & The edge used to reach the vertex being tested and visited \\
+\hline
+{\em w} & The vertex being tested and visited \\
+\hline
+{\em residual} & The residual capacity of the edge used to reach the vertex \\
+\hline
+{\em dist\+\_\+init} & The initial distance from the source vertex to the vertex being tested and visited \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Time complexity\+: O(log\+V), where V is the number of vertices in the graph, due to the insertion operation on the priority queue. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a865d93733c877d75837727753a35b4f6}\label{classGraphAlgorithms_a865d93733c877d75837727753a35b4f6} 
+\index{GraphAlgorithms@{GraphAlgorithms}!testAndVisitReducedConnectivity@{testAndVisitReducedConnectivity}}
+\index{testAndVisitReducedConnectivity@{testAndVisitReducedConnectivity}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{testAndVisitReducedConnectivity()}{testAndVisitReducedConnectivity()}}
+{\footnotesize\ttfamily void Graph\+Algorithms\+::test\+And\+Visit\+Reduced\+Connectivity (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&}]{q,  }\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Auxiliary function used in the Edmonds-\/\+Karp algorithm with reduced connectivity. The function checks if a vertex is visited and if there is still residual capacity on the edge. If both conditions are met, the vertex is marked as visited, its path is set to the edge and it is added to the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & A reference to the queue of vertices to be visited in the algorithm. \\
+\hline
+{\em e} & A pointer to the edge being tested. \\
+\hline
+{\em w} & A pointer to the vertex to be checked for visitation. \\
+\hline
+{\em residual} & The remaining residual capacity of the edge being tested. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGraphAlgorithms_a263885df52809e4bac2d5a13cb04bb80}\label{classGraphAlgorithms_a263885df52809e4bac2d5a13cb04bb80} 
+\index{GraphAlgorithms@{GraphAlgorithms}!TopKDistricsForWithMoreTraficPotencial@{TopKDistricsForWithMoreTraficPotencial}}
+\index{TopKDistricsForWithMoreTraficPotencial@{TopKDistricsForWithMoreTraficPotencial}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{TopKDistricsForWithMoreTraficPotencial()}{TopKDistricsForWithMoreTraficPotencial()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ Graph\+Algorithms\+::\+Top\+KDistrics\+For\+With\+More\+Trafic\+Potencial (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Computes the top k districts with the highest traffic potential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The number of districts to return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis} objects representing the top k districts with the highest traffic potential. This function calculates the number of trains that can travel between every pair of stations within each district, and returns the k districts with the highest traffic potential. It achieves this by calling the edmonds\+Karp\+Reduced\+Connectivity function for each pair of stations in each district, while excluding any edges that connect stations in different districts (specified in the black\+List parameter). The function returns a vector of \doxylink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis} objects, each representing a district and its associated traffic potential, sorted in decreasing order of traffic potential. If k is greater than the number of districts, the function returns all districts. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a8cdb089cabef0c3a34d3d7fa38a3f687}\label{classGraphAlgorithms_a8cdb089cabef0c3a34d3d7fa38a3f687} 
+\index{GraphAlgorithms@{GraphAlgorithms}!TopKMunicipesForWithMoreTraficPotencial@{TopKMunicipesForWithMoreTraficPotencial}}
+\index{TopKMunicipesForWithMoreTraficPotencial@{TopKMunicipesForWithMoreTraficPotencial}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{TopKMunicipesForWithMoreTraficPotencial()}{TopKMunicipesForWithMoreTraficPotencial()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis}} $>$ Graph\+Algorithms\+::\+Top\+KMunicipes\+For\+With\+More\+Trafic\+Potencial (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Finds the top k municipalities with the most traffic potential based on the number of trains that can be routed between stations within each municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The number of top municipalities to return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis} structs representing the top k municipalities and their traffic potential. This function iterates through all municipalities in the graph, and for each municipality it computes the maximum number of trains that can be routed between pairs of stations within the municipality using the Edmonds-\/\+Karp algorithm. The result is a vector of \doxylink{structFlowPerMunicOrDis}{Flow\+Per\+Munic\+Or\+Dis} structs, where each struct contains the name of a municipality and the number of trains that can be routed between stations within the municipality. The vector is sorted in descending order of traffic potential, and only the top k municipalities are returned. This function has a time complexity of O(\+M $\ast$ V$^\wedge$2 $\ast$ E$^\wedge$2), where M is the number of municipalities in the graph, V is the number of vertices, and E is the number of edges in the graph. 
+\end{DoxyReturn}
+\Hypertarget{classGraphAlgorithms_a1a40093e6b997399ccb1a50a70c0c4ac}\label{classGraphAlgorithms_a1a40093e6b997399ccb1a50a70c0c4ac} 
+\index{GraphAlgorithms@{GraphAlgorithms}!TopKStationsThatAreAffectedByReducedConectivity@{TopKStationsThatAreAffectedByReducedConectivity}}
+\index{TopKStationsThatAreAffectedByReducedConectivity@{TopKStationsThatAreAffectedByReducedConectivity}!GraphAlgorithms@{GraphAlgorithms}}
+\doxysubsubsection{\texorpdfstring{TopKStationsThatAreAffectedByReducedConectivity()}{TopKStationsThatAreAffectedByReducedConectivity()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structAfectedStation}{Afected\+Station}} $>$ Graph\+Algorithms\+::\+Top\+KStations\+That\+Are\+Affected\+By\+Reduced\+Conectivity (\begin{DoxyParamCaption}\item[{int}]{k,  }\item[{vector$<$ \mbox{\hyperlink{structEdgeSearch}{Edge\+Search}} $>$}]{unused\+Edges }\end{DoxyParamCaption})}
+
+
+
+Finds the top K stations that are most affected by a reduced connectivity scenario caused by the removal of certain edges. 
+
+This function computes the number of trains that can still reach each station in the graph after removing a set of edges, and then returns the top K stations that have the biggest difference between the number of trains that can reach them before and after the removal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The number of stations to return. \\
+\hline
+{\em unusable\+Edges} & A vector containing \doxylink{structEdgeSearch}{Edge\+Search} objects that represent the edges to be removed from the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \doxylink{structAfectedStation}{Afected\+Station} objects, sorted by the magnitude of the difference between the number of trains that can reach the station before and after removing the edges. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Graph\+Algorithms.\+h\end{DoxyCompactItemize}

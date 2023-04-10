@@ -11,29 +11,96 @@
 using namespace std;
 class Graph {
 public:
+
+    /**
+     * @brief Construct a new Graph object
+     */
     ~Graph();
-    /*
-    * Auxiliary function to find a vertex with a given ID.
-    */
+
+    /**
+     * @brief find a vertex in the graph with the given id, if it does not exists return nullptr
+     *
+     * @param stationName Vertex stationName
+     * @return Vertex* vertex
+     */
     Vertex *findVertex(const string &id) const;
-    /*
-     *  Adds a vertex with a given content or info (in) to a graph (this).
-     *  Returns true if successful, and false if a vertex with that content already exists.
+
+    /**
+     * @brief add a vertex to the graph
+     *
+     * @param station Vertex station
+     * @return true Vertex was added
+     * @return false Vertex with that id already exists
      */
     bool addVertex(string name,string district,string municipality,string township,string line);
+
+    /**
+     * @brief remove a vertex from the graph
+     *
+     * @param station_name name of the station to remove
+     * @return true Vertex was removed
+     * @return false Vertex was not found
+     */
     bool removeVertex(const string &id);
 
-    /*
-     * Adds an edge to a graph (this), given the contents of the source and
-     * destination vertices and the edge weight (w).
-     * Returns true if successful, and false if the source or destination vertex does not exist.
+    /**
+     * @brief add a edge to a vertex of the graph
+     * @param source Source vertex
+     * @param dest Destination Vertex
+     * @param weight Edge weight
+     * @param service Edge service
+     * @return true Edge was added
+     * @return false Source or destination vertex does not exist
      */
     bool addEdge(const string &sourc, const string &dest, double w , string service);
+
+    /**
+     * @brief add a edge from source to destination vertex and another edge the other way
+     *
+     * @param source Source vertex
+     * @param dest Destination Vertex
+     * @param weight Edge weight
+     * @param service Edge service
+     * @return true Edge was added
+     * @return false Source or destination vertex does not exist
+     */
     bool addBidirectionalEdge(const string &sourc, const string &dest, double w, string service);
+
+    /**
+     * @brief find edge between two vertices
+     * @param dest Destination vertex
+     * @param orig Source vertex
+     * @param weight Edge weight
+     * @param service Edge service
+     * @return Edge* Edge
+     */
     Edge* findEdge(Vertex * dest,Vertex *orig,double weight,string service);
+
+    /**
+     * @brief find edge between two vertices
+     * @param dest Destination vertex
+     * @param orig Source vertex
+     * @return Edge* Edge
+     */
     Edge* findEdge(string orig , string dest);
+
+    /**
+     * @brief find edge by edge
+     * @param e Edge
+     * @return Edge* Edge
+     */
     Edge* findEdge(Edge e);
+
+    /**
+     * @brief get the number of vertex in the graph
+     * @return int number of vertex
+     */
     int getNumVertex() const;
+
+    /**
+     * @brief gets the vertex set
+     * @return std::vector<Vertex*> vertex set
+     */
     std::vector<Vertex *> getVertexSet() const;
 protected:
     std::vector<Vertex *> vertexSet;    // vertex set
