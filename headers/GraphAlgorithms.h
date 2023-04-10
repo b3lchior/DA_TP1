@@ -52,7 +52,8 @@ public:
     * @param stationID The ID of the station.
     * @return The maximum number of trains that can be sent to the station.
     * This function uses the Edmonds-Karp algorithm to calculate the maximum number of trains that can be sent to a given station based on the current network congestion. It adds a temporary source vertex and connects it to all vertices with only one outgoing edge, which allows the algorithm to compute the maximum flow from the temporary source to the target station. This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
-*/
+    * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
+     */
     int find_max_number_of_trains_to_station(string stationID);
 
     /**
@@ -71,7 +72,8 @@ public:
     * @param k The number of districts to return.
     * @return A vector of FlowPerMunicOrDis objects representing the top k districts with the highest traffic potential.
     * This function calculates the number of trains that can travel between every pair of stations within each district, and returns the k districts with the highest traffic potential. It achieves this by calling the edmondsKarpReducedConnectivity function for each pair of stations in each district, while excluding any edges that connect stations in different districts (specified in the blackList parameter). The function returns a vector of FlowPerMunicOrDis objects, each representing a district and its associated traffic potential, sorted in decreasing order of traffic potential. If k is greater than the number of districts, the function returns all districts.
-*/
+    * This function has a time complexity of O(D* V^2 * E^2), where D is the number of Districs in the graph, V is the number of vertices, and E is the number of edges in the graph.
+     */
     vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
 
 /**
@@ -81,8 +83,8 @@ public:
     * @param t Pointer to the sink vertex.
     * @param price Reference to an integer variable to store the minimum residual capacity of the augmenting path found.
     * @return The maximum flow from source to sink.
-    * This function implements the Edmonds-Karp algorithm, which is a variation of the Ford-Fulkerson algorithm. It uses breadth-first search to find an augmenting path with the minimum residual capacity and updates the flow in the edges along that path. Dijkstra's algorithm is used to compute the minimum residual capacity of the augmenting path. The time complexity of this function is O(V^2 * E^2), where V is the number of vertices and E is the number of edges in the graph.
-*/
+    * This function implements the Edmonds-Karp algorithm, which is a variation of the Ford-Fulkerson algorithm. It uses breadth-first search to find an augmenting path with the minimum residual capacity and updates the flow in the edges along that path. Dijkstra's algorithm is used to compute the minimum residual capacity of the augmenting path. The time complexity of this function is O(V * E^2 * log(V)), where V is the number of vertices and E is the number of edges in the graph.
+ */
     int edmondsKarpWithDijska(Vertex* s,Vertex* t,int &price);
 
 /**
@@ -93,6 +95,7 @@ public:
 * @param edgesReduced A vector of edges to be marked as "reduced connectivity", meaning that they will not be considered
 * in the search for argumenting paths. This is useful when trying to avoid paths that cross certain edges in the graph.
 * @return The maximum flow from s to t.
+ * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
 */
     int edmondsKarpReducedConnectivity(Vertex* s,Vertex* t, vector<Edge*> edgesReduced);
 
@@ -105,18 +108,23 @@ public:
  * @param k The number of stations to return.
  * @param unusableEdges A vector containing EdgeSearch objects that represent the edges to be removed from the graph.
  * @return A vector of AfectedStation objects, sorted by the magnitude of the difference between the number of trains that can reach the station before and after removing the edges.
+ * This function has a time complexity of O(V^2* E^2), where V is the number of vertices and E is the number of edges in the graph.
  */
     vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k,vector<Edge*> unusedEdges);
 
     /**
     * @brief returns a vector with the names of all the municipalities present in the graph.
     * @return A vector with the names of all the municipalities present in the graph.
+    *
+    * This function has a time complexity of O(V), where V is the number of vertices.
 */
     vector<string> getMunicipes();
 
     /**
     * @brief returns a vector with the names of all the districts present in the graph.
     * @return A vector with the names of all the districts present in the graph.
+    *
+    * This function has a time complexity of O(V), where V is the number of vertices.
 */
     vector<string> getDistrics();
 
@@ -126,6 +134,7 @@ public:
     * @param municipe The name of the municipality to search for.
     * @return A vector of vertices that belong to the specified municipality.
     * This function loops through all the vertices in the graph and retrieves vertices whose municipality name matches the provided parameter. If a vertex is found that belongs to the specified municipality, it is added to the result vector. The result vector may be empty if no vertices belong to the specified municipality.
+    * This function has a time complexity of O(V), where V is the number of vertices.
 */
     vector<Vertex*> findVertexsInMunicipe(string municipe);
 
@@ -135,7 +144,8 @@ public:
     * @param district The name of the district to search for.
     * @return A vector of vertices that belong to the specified district.
     * This function loops through all the vertices in the graph and retrieves vertices whose district name matches the provided parameter. If a vertex is found that belongs to the specified district, it is added to the result vector. The result vector may be empty if no vertices belong to the specified district.
-*/
+    * This function has a time complexity of O(V), where V is the number of vertices.
+     */
     vector<Vertex*> findVertexsInDistricts(string district);
 
     /**
@@ -145,7 +155,9 @@ public:
     * @param edgesReduced A vector of edges to be removed from the graph to simulate congestion.
     * @return The maximum number of trains that can be sent to the specified station with the given network congestion.
     * This function first finds the target vertex corresponding to the provided station ID, and then creates a source vertex with a unique ID of "DELETE" to simulate the removal of edges from the graph. The function then calls the Edmonds-Karp algorithm with the reduced edge set and returns the resulting maximum flow. This function can be used to calculate the maximum number of trains that can be sent to a station with a congested network.
-*/
+    *
+    * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
+     */
     int find_max_number_of_trains_to_station_with_congested_network(string stationID,vector<Edge*> edgesReduced);
 protected:
 
@@ -155,6 +167,8 @@ protected:
     * @param stationID The ID of the station to calculate the maximum number of trains for.
     * @return The maximum number of trains that can be sent to the specified station without network congestion.
     * This function first finds the target vertex corresponding to the provided station ID, and then creates a source vertex with a unique ID of "DELETE". The function then calls the Edmonds-Karp algorithm and returns the resulting maximum flow. This function can be used to calculate the maximum number of trains that can be sent to a station without network congestion.
+     *
+     * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
 */
     int find_max_number_of_trains_to_stationAux(string stationID);
 
@@ -255,6 +269,8 @@ int finMinResidualaLongPathReducedConnectivity(Vertex* s,Vertex* t);
  * @param t pointer to the target vertex of the path
  * @param f the flow to be added/subtracted along the path
  * @return void
+ *
+ * Time complexity: O(E), where E is the number of edges in the augmenting path, since the function iterates through each edge in the path only once to update the flow.
 */
 void argumentFlowAlongPathReducedConnectivity(Vertex* s,Vertex* t,int f);
 
@@ -267,7 +283,9 @@ void argumentFlowAlongPathReducedConnectivity(Vertex* s,Vertex* t,int f);
  * @param e A pointer to the edge being tested.
  * @param w A pointer to the vertex to be checked for visitation.
  * @param residual The remaining residual capacity of the edge being tested.
-*/
+ *
+ * Time complexity: O(1), since the function only performs a constant number of operations regardless of the size of the input.
+ */
 void testAndVisitReducedConnectivity(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,double residual);
 
 /**
@@ -276,6 +294,7 @@ void testAndVisitReducedConnectivity(std::queue<Vertex*>& q,Edge* e ,Vertex* w ,
 @param s The source vertex.
 @param t The sink vertex.
 @return true if there is an augmenting path from s to t, false otherwise.
+ * Time complexity: O(E+V), where E is the number of edges and V is the number of vertices in the graph, due to the traversal of all edges and vertices in the graph in the worst case scenario.
 */
 bool findArgumentingPathReducedConnectivity(Vertex* s,Vertex* t);
 

@@ -28,6 +28,8 @@ public:
     /**
      * @brief Function that gets the network graph
      * @return network graph
+     *
+     * Complexity: O(1)
      */
     GraphAlgorithms getGraph();
 
@@ -35,17 +37,22 @@ public:
      * @brief Function that calculates the maximum flow between two stations
      * @param source source station
      * @param target target station
+     *
+     * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
      */
     int MaxFlow(string source, string target);
 
     /**
      * @brief Function that calculates the maximum flow between two stations
+     *
+     * This function has a time complexity of O(V^3 * E^2), where V is the number of vertices and E is the number of edges in the graph.
      */
     vector<MaxTrainPair> MaxFlowFromNetwork();
 
     /**
      * @brief Function that calls a function to calculate the max number of trains that can be sent to a station
      * @param stationID station id
+     * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
      */
     int find_max_number_of_trains_to_station(string stationID);
 
@@ -53,6 +60,8 @@ public:
      * @brief Function that calls a function that calculates top k stations with more traffic potential
      * @param  k number of stations
      * @return vector with the top k stations with more traffic potential
+     *
+     * This function has a time complexity of O(D * V^2 * E^2), where D is the number of municipalities in the graph, V is the number of vertices, and E is the number of edges in the graph.
      */
     vector<FlowPerMunicOrDis> TopKDistricsForWithMoreTraficPotencial(int k);
 
@@ -60,6 +69,8 @@ public:
      * @brief Function that calls a function that calculates the top k municipalities with more traffic potential
      * @param k number of municipalities
      * @return vector with the top k municipalities with more traffic potential
+     *
+     * This function has a time complexity of O(M * V^2 * E^2), where M is the number of municipalities in the graph, V is the number of vertices, and E is the number of edges in the graph.
      */
     vector<FlowPerMunicOrDis> TopKMunicipesForWithMoreTraficPotencial(int k);
 

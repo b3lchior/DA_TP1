@@ -22,6 +22,8 @@ public:
      *
      * @param stationName Vertex stationName
      * @return Vertex* vertex
+     *
+     * Complexity:O(V)
      */
     Vertex *findVertex(const string &id) const;
 
@@ -31,6 +33,8 @@ public:
      * @param station Vertex station
      * @return true Vertex was added
      * @return false Vertex with that id already exists
+     *
+     * Complexity:O(1)
      */
     bool addVertex(string name,string district,string municipality,string township,string line);
 
@@ -40,6 +44,8 @@ public:
      * @param station_name name of the station to remove
      * @return true Vertex was removed
      * @return false Vertex was not found
+     *
+     * Complexity:O(V^2)
      */
     bool removeVertex(const string &id);
 
@@ -51,6 +57,7 @@ public:
      * @param service Edge service
      * @return true Edge was added
      * @return false Source or destination vertex does not exist
+     * Complexity:O(V)
      */
     bool addEdge(const string &sourc, const string &dest, double w , string service);
 
@@ -63,6 +70,7 @@ public:
      * @param service Edge service
      * @return true Edge was added
      * @return false Source or destination vertex does not exist
+     * @Complexity O(V), where V is the number of vertexs.
      */
     bool addBidirectionalEdge(const string &sourc, const string &dest, double w, string service);
 
@@ -73,6 +81,7 @@ public:
      * @param weight Edge weight
      * @param service Edge service
      * @return Edge* Edge
+     * @Complexity O(V), where V is the number of vertexs.
      */
     Edge* findEdge(Vertex * dest,Vertex *orig,double weight,string service);
 
@@ -81,6 +90,7 @@ public:
      * @param dest Destination vertex
      * @param orig Source vertex
      * @return Edge* Edge
+     * @Complexity O(V), where V is the number of vertexs.
      */
     Edge* findEdge(string orig , string dest);
 
@@ -88,6 +98,7 @@ public:
      * @brief find edge by edge
      * @param e Edge
      * @return Edge* Edge
+     * @Complexity O(V), where V is the number of vertexs.
      */
     Edge* findEdge(Edge e);
 
