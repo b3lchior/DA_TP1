@@ -1,0 +1,57 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by tomas on 3/13/2023.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef DA\_TP1\_GRAPH\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define DA\_TP1\_GRAPH\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}VertexEdge.h"{}}}
+\DoxyCodeLine{11 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{18     \mbox{\hyperlink{class_graph_a902c5b3eacb66d60752525ab23297a95}{\string~Graph}}();}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{28     \mbox{\hyperlink{class_vertex}{Vertex}} *\mbox{\hyperlink{class_graph_a4c73af522cebce9c30d0145fea00f0b9}{findVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a3635dfc9eda6436fe0a51765e7ea1498}{addVertex}}(\textcolor{keywordtype}{string} name,\textcolor{keywordtype}{string} district,\textcolor{keywordtype}{string} municipality,\textcolor{keywordtype}{string} township,\textcolor{keywordtype}{string} line);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{50     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a1c7110941de246c406c50c5311abfa29}{removeVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{62     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a34e12534631f32aa55bc1778da60a57e}{addEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&dest, \textcolor{keywordtype}{double} w , \textcolor{keywordtype}{string} service);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_af405eba5c4286fd0e8c2b081a17d77f7}{addBidirectionalEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&dest, \textcolor{keywordtype}{double} w, \textcolor{keywordtype}{string} service);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{86     \mbox{\hyperlink{class_edge}{Edge}}* \mbox{\hyperlink{class_graph_a8f19f005704401983591d3283a896a09}{findEdge}}(\mbox{\hyperlink{class_vertex}{Vertex}} * dest,\mbox{\hyperlink{class_vertex}{Vertex}} *orig,\textcolor{keywordtype}{double} weight,\textcolor{keywordtype}{string} service);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{95     \mbox{\hyperlink{class_edge}{Edge}}* \mbox{\hyperlink{class_graph_ad7bb5ad1815614ea8d548989346da414}{findEdge}}(\textcolor{keywordtype}{string} orig , \textcolor{keywordtype}{string} dest);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{103     \mbox{\hyperlink{class_edge}{Edge}}* \mbox{\hyperlink{class_graph_a459b494b4813c66585cb1d0fdc455e0c}{findEdge}}(\mbox{\hyperlink{class_edge}{Edge}} e);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{109     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{getNumVertex}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{115     std::vector<Vertex *> \mbox{\hyperlink{class_graph_a619ac583094079134074658e29463c0e}{getVertexSet}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{116 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{117     std::vector<Vertex *> vertexSet;    \textcolor{comment}{// vertex set}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{keywordtype}{double} ** distMatrix = \textcolor{keyword}{nullptr};   \textcolor{comment}{// dist matrix for Floyd-\/Warshall}}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} **pathMatrix = \textcolor{keyword}{nullptr};   \textcolor{comment}{// path matrix for Floyd-\/Warshall}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{comment}{/*}}
+\DoxyCodeLine{123 \textcolor{comment}{     * Finds the index of the vertex with a given content.}}
+\DoxyCodeLine{124 \textcolor{comment}{     */}}
+\DoxyCodeLine{125     \textcolor{keywordtype}{int} findVertexIdx(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{126 \};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{keywordtype}{void} deleteMatrix(\textcolor{keywordtype}{int} **m, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{129 \textcolor{keywordtype}{void} deleteMatrix(\textcolor{keywordtype}{double} **m, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA\_TP1\_GRAPH\_H}}
+
+\end{DoxyCode}

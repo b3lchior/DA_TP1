@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['manager_0',['Manager',['../classManager.html',1,'']]],
-  ['maxtrainpair_1',['MaxTrainPair',['../structMaxTrainPair.html',1,'']]],
-  ['mutablepriorityqueue_2',['MutablePriorityQueue',['../classMutablePriorityQueue.html',1,'']]]
+  ['manager_0',['Manager',['../class_manager.html',1,'']]],
+  ['maxtrainpair_1',['MaxTrainPair',['../struct_max_train_pair.html',1,'']]],
+  ['mutablepriorityqueue_2',['MutablePriorityQueue',['../class_mutable_priority_queue.html',1,'']]]
 ];
