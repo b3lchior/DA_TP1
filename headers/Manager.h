@@ -79,6 +79,7 @@ public:
      * @param  s source station
      * @param  t target station
      * @return max flow with min cost
+     * This function has a time complexity of O((V * E^2)*log(V)), where V is the number of vertices and E is the number of edges in the graph.
      */
     pair<int,int> MaxFlowWithMinCost(string s,string t);
 
@@ -88,6 +89,8 @@ public:
      * @param  t target station
      * @param  unusableEdges vector with the edges that are not usable
      * @return max flow with reduced connectivity
+     * This function has a time complexity of O(V * E^2), where V is the number of vertices and E is the number of edges in the graph.
+
      */
     int MaxFlowWithWithReducedConectivity(string s,string t , vector<EdgeSearch> unusableEdges);
 
@@ -96,6 +99,7 @@ public:
      * @param  k number of stations
      * @param  unusedEdges vector with the edges that are not usable
      * @return vector with the top k stations that are affected by reduced connectivity
+     * This function has a time complexity of O(V^2* E^2), where V is the number of vertices and E is the number of edges in the graph.
      */
     vector<AfectedStation> TopKStationsThatAreAffectedByReducedConectivity(int k ,vector<EdgeSearch> unusedEdges);
 };
